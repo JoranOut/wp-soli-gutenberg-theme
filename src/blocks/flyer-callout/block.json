@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "soli/flyer-callout",
+	"version": "0.1.0",
+	"title": "Flyer-blok",
+	"category": "widgets",
+	"icon": "megaphone",
+	"description": "Opvallend linkblok met een aankondiging (bijv. een flyer): bovenlabel, titel en oproep.",
+	"keywords": [ "flyer", "callout", "link", "aankondiging" ],
+	"textdomain": "soli-gutenberg-theme",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Flyer"
+		},
+		"title": {
+			"type": "string",
+			"default": "Dubbelconcert Oudenbossche Harmonie en Soli Harmonie"
+		},
+		"cta": {
+			"type": "string",
+			"default": "Bekijk de flyer →"
+		},
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"opensInNewTab": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"eyebrow": "Flyer",
+			"title": "Dubbelconcert Oudenbossche Harmonie en Soli Harmonie",
+			"cta": "Bekijk de flyer →"
+		}
+	},
+	"supports": {
+		"html": false,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

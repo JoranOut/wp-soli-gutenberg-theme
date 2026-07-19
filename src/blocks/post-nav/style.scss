@@ -1,0 +1,67 @@
+/* soli/post-nav — previous/next post cards (mockup related navigation). */
+.wp-block-soli-post-nav.soli-post-nav {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 1rem;
+
+	.soli-post-nav__card {
+		display: flex;
+		flex-direction: column;
+		flex: 0 1 auto;
+		max-width: calc(50% - 0.5rem);
+		padding: 1.5rem;
+		background: var(--wp--preset--color--white, #fff);
+		border: 1px solid var(--wp--preset--color--line, #e6e2da);
+		border-radius: 12px;
+		text-decoration: none;
+		transition: border-color 0.18s ease, transform 0.18s ease;
+	}
+
+	/* Stack full width on narrow screens. */
+	@media (max-width: 599.98px) {
+		.soli-post-nav__card {
+			max-width: none;
+			flex-basis: 100%;
+		}
+	}
+
+	a.soli-post-nav__card:hover,
+	a.soli-post-nav__card:focus-visible {
+		border-color: var(--wp--preset--color--maroon, #7a1f2b);
+		transform: translateY(-2px);
+	}
+
+	.soli-post-nav__card--next {
+		align-items: flex-end;
+		text-align: right;
+	}
+
+	/* Empty placeholder keeps the surviving card in its column. */
+	.soli-post-nav__card--empty {
+		border: 0;
+		background: transparent;
+	}
+
+	.soli-post-nav__label {
+		font-family: var(--wp--preset--font-family--sans, sans-serif);
+		font-size: 11.5px;
+		text-transform: uppercase;
+		letter-spacing: 0.18em;
+		color: var(--wp--preset--color--muted, #5a5a5e);
+	}
+
+	.soli-post-nav__title {
+		margin-top: 0.5rem;
+		font-family: var(--wp--preset--font-family--display, serif);
+		font-size: 19px;
+		line-height: 1.3;
+		color: var(--wp--preset--color--ink, #1a1a2e);
+	}
+
+	.soli-post-nav__date {
+		margin-top: 0.25rem;
+		font-size: 13px;
+		color: var(--wp--preset--color--muted, #5a5a5e);
+	}
+}

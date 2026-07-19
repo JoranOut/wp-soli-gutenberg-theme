@@ -1,0 +1,55 @@
+/* soli/masonry — responsive masonry container.
+ *
+ * Two states:
+ *   1. JS-enhanced (.is-enhanced): view.js builds a flex row of columns and
+ *      packs items into the shortest one. Layout lives on __grid / __column.
+ *   2. Fallback (no JS yet, or the block editor preview): CSS multi-column on
+ *      the raw Query Loop list so content is never a single ugly stack.
+ */
+.wp-block-soli-masonry.soli-masonry {
+	/* --- JS-enhanced grid --- */
+	.wp-block-soli-masonry__grid {
+		display: flex;
+		align-items: flex-start;
+		gap: var(--soli-masonry-gap, 24px);
+	}
+
+	.wp-block-soli-masonry__column {
+		flex: 1 1 0;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--soli-masonry-gap, 24px);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		> * {
+			margin: 0;
+		}
+	}
+
+	/* --- CSS multi-column fallback (pre-enhancement / editor preview) --- */
+	&:not(.is-enhanced) .wp-block-post-template {
+		display: block;
+		column-count: var(--soli-masonry-columns, 3);
+		column-gap: var(--soli-masonry-gap, 24px);
+
+		> * {
+			break-inside: avoid;
+			margin: 0 0 var(--soli-masonry-gap, 24px);
+		}
+	}
+
+	@media (max-width: 900px) {
+		&:not(.is-enhanced) .wp-block-post-template {
+			column-count: var(--soli-masonry-columns-tablet, 2);
+		}
+	}
+
+	@media (max-width: 600px) {
+		&:not(.is-enhanced) .wp-block-post-template {
+			column-count: var(--soli-masonry-columns-mobile, 1);
+		}
+	}
+}

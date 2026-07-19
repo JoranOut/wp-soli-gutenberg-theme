@@ -1,0 +1,56 @@
+/* soli/concert-details — labeled facts table (mockup concert details). */
+.wp-block-soli-concert-details.soli-concert-details {
+	margin-block: 2rem;
+	overflow: hidden;
+	background: var(--wp--preset--color--paper, #f5efe6);
+	border: 1px solid var(--wp--preset--color--line, #e6e2da);
+	border-radius: 10px;
+
+	.soli-concert-details-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 15px;
+	}
+
+	tr + tr {
+		border-top: 1px solid var(--wp--preset--color--line, #e6e2da);
+	}
+
+	th {
+		width: 180px;
+		padding: 1rem 0.75rem 1rem 1.25rem;
+		font-family: var(--wp--preset--font-family--sans, sans-serif);
+		font-size: 11.5px;
+		font-weight: 600;
+		line-height: 1.4;
+		text-align: left;
+		text-transform: uppercase;
+		letter-spacing: var(--wp--custom--letter-spacing--label, 0.16em);
+		color: var(--wp--preset--color--muted, #5a5a5e);
+		vertical-align: top;
+	}
+
+	td {
+		padding: 1rem 1.25rem 1rem 0;
+		font-family: var(--wp--preset--font-family--serif, serif);
+		color: #2a2a2e;
+		vertical-align: top;
+	}
+
+	.soli-detail-sub {
+		color: var(--wp--preset--color--muted, #5a5a5e);
+	}
+
+	@media (max-width: 600px) {
+		th {
+			width: 130px;
+			padding-left: 1rem;
+		}
+	}
+
+	/* Editor: keep the remove button unobtrusive at the row's end. */
+	.soli-concert-details__remove {
+		margin-left: 0.5rem;
+		vertical-align: middle;
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "soli/post-nav",
+	"version": "0.1.0",
+	"title": "Berichtnavigatie",
+	"category": "widgets",
+	"icon": "controls-repeat",
+	"description": "Navigatiekaarten naar het vorige (oudere) en volgende (nieuwere) bericht, met titel en datum.",
+	"keywords": [ "navigatie", "vorige", "volgende", "bericht" ],
+	"textdomain": "soli-gutenberg-theme",
+	"attributes": {
+		"prevLabel": {
+			"type": "string",
+			"default": "Ouder bericht"
+		},
+		"nextLabel": {
+			"type": "string",
+			"default": "Nieuwer bericht"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide" ],
+		"spacing": {
+			"margin": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

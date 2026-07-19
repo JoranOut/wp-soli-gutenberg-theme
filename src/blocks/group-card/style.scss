@@ -1,0 +1,177 @@
+/* soli/group-card — overview card face (mockup .og-card). */
+.wp-block-soli-group-card.soli-og-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	background: var(--wp--preset--color--white, #fff);
+	border: 1px solid var(--wp--preset--color--line, #e6e2da);
+	border-radius: var(--wp--custom--card-radius, 10px 10px 3px 10px);
+	text-decoration: none;
+	transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+
+	&:hover {
+		transform: translateY(-4px);
+		border-color: var(--wp--preset--color--maroon, #7a1f2b);
+		box-shadow: var(--wp--custom--shadow--card, 0 16px 34px rgba(26, 26, 46, 0.13));
+	}
+
+	.soli-og-card-img {
+		display: block;
+		width: 100%;
+		aspect-ratio: 16 / 10;
+		background-color: var(--wp--preset--color--sand, #e8dcc6);
+		background-size: cover;
+		background-position: center;
+		transition: transform 0.3s ease;
+	}
+
+	&:hover .soli-og-card-img {
+		transform: scale(1.04);
+	}
+
+	.soli-og-card-body {
+		position: relative;
+		display: block;
+		padding: 1.2rem 1.4rem 1.5rem;
+	}
+
+	.soli-og-card-meta {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		margin-bottom: 0.85rem;
+		padding: 0.22rem 0.6rem;
+		border-radius: 999px;
+		background: var(--wp--preset--color--paper, #f5efe6);
+		border: 1px solid var(--wp--preset--color--line, #e6e2da);
+		font-family: var(--wp--preset--font-family--sans, sans-serif);
+		font-size: 12.5px;
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		color: var(--wp--preset--color--maroon, #7a1f2b);
+		white-space: nowrap;
+	}
+
+	.soli-og-card-name {
+		display: block;
+		margin: 0 0 0.3rem;
+		font-family: var(--wp--preset--font-family--display, serif);
+		font-size: 21px;
+		font-weight: 400;
+		line-height: 1.15;
+		color: var(--wp--preset--color--ink, #1a1a2e);
+	}
+
+	.soli-og-card-tag {
+		display: block;
+		margin: 0;
+		font-size: 14px;
+		line-height: 1.5;
+		color: var(--wp--preset--color--muted, #5a5a5e);
+	}
+
+	.soli-og-card-arrow {
+		position: absolute;
+		right: 1.3rem;
+		bottom: 1.3rem;
+		color: var(--wp--preset--color--maroon, #7a1f2b);
+		font-size: 20px;
+		opacity: 0;
+		transform: translateX(-6px);
+		transition: opacity 0.18s ease, transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
+	}
+
+	&:hover .soli-og-card-arrow {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/* soli/group-card — tile face inside soli/group-slider (mockup .soli-tile). */
+.wp-block-soli-group-card.soli-tile {
+	flex: 0 0 100%;
+	box-sizing: border-box;
+	padding: 0 0.4rem;
+	text-decoration: none;
+
+	@media (min-width: 560px) {
+		flex-basis: 50%;
+	}
+
+	@media (min-width: 860px) {
+		flex-basis: 33.333%;
+	}
+
+	@media (min-width: 1140px) {
+		flex-basis: 25%;
+	}
+
+	.soli-tile-inner {
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+		width: 100%;
+		aspect-ratio: 4 / 5;
+		overflow: hidden;
+		border-radius: var(--wp--custom--card-radius, 10px 10px 3px 10px);
+		border: 1px solid var(--wp--preset--color--line, #e6e2da);
+		background: var(--wp--preset--color--sand, #e8dcc6);
+	}
+
+	.soli-tile-img {
+		position: absolute;
+		inset: 0;
+		background-size: cover;
+		background-position: center;
+		transition: transform 0.35s ease;
+
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: var(--soli-shutter-color, var(--wp--preset--color--maroon, #7a1f2b));
+			mix-blend-mode: color;
+			opacity: 0.26;
+			pointer-events: none;
+		}
+	}
+
+	&:hover .soli-tile-img {
+		transform: scale(1.05);
+	}
+
+	.soli-tile-cap {
+		position: relative;
+		z-index: 2;
+		display: block;
+		width: 100%;
+		padding: 1.2rem 1.1rem 1rem;
+		background: linear-gradient(to top, rgba(26, 26, 46, 0.82), rgba(26, 26, 46, 0.1) 70%, transparent);
+		color: #fff;
+	}
+
+	.soli-tile-name {
+		display: block;
+		font-family: var(--wp--preset--font-family--display, serif);
+		font-size: clamp(17px, 1.4vw, 22px);
+		font-weight: 400;
+		line-height: 1.05;
+	}
+
+	.soli-tile-meet {
+		display: block;
+		margin-top: 0.3rem;
+		font-family: var(--wp--preset--font-family--sans, sans-serif);
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.85);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wp-block-soli-group-card.soli-og-card,
+	.wp-block-soli-group-card.soli-og-card .soli-og-card-img,
+	.wp-block-soli-group-card.soli-tile .soli-tile-img {
+		transition: none;
+	}
+}

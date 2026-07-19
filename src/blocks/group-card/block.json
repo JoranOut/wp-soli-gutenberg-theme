@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "soli/group-card",
+	"version": "0.1.0",
+	"title": "Groepskaart",
+	"category": "widgets",
+	"icon": "id-alt",
+	"description": "Kaart voor een orkest of groep, gekoppeld aan een pagina: foto, naam, tagline en repetitiemoment.",
+	"keywords": [ "orkest", "groep", "kaart" ],
+	"textdomain": "soli-gutenberg-theme",
+	"attributes": {
+		"pageId": {
+			"type": "integer",
+			"default": 0
+		},
+		"rehearsal": {
+			"type": "string",
+			"default": ""
+		},
+		"showArrow": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"usesContext": [ "soli/displayMode" ],
+	"supports": {
+		"html": false,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

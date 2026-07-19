@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "soli/program-list",
+	"version": "0.1.0",
+	"title": "Programmalijst",
+	"category": "widgets",
+	"icon": "editor-ul",
+	"description": "Lijst met werken op het programma, weergegeven als raster met bolletjes.",
+	"keywords": [ "programma", "werken", "lijst", "repertoire" ],
+	"textdomain": "soli-gutenberg-theme",
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				"A Klezmer Karnival — Philip Sparke",
+				"Utopia — Jacob de Haan",
+				"Up — arr. Michael Brown",
+				"Brabants Volkslied — Guus Meeuwis"
+			]
+		}
+	},
+	"example": {
+		"attributes": {
+			"items": [ "West Side Story", "Porgy en Bess" ]
+		}
+	},
+	"supports": {
+		"html": false,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

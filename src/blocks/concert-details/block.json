@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "soli/concert-details",
+	"version": "0.1.0",
+	"title": "Concertgegevens",
+	"category": "widgets",
+	"icon": "editor-table",
+	"description": "Overzichtstabel met concertgegevens: rijen met een label (Datum, Locatie, Programma …) en een waarde.",
+	"keywords": [ "concert", "gegevens", "tabel", "programma" ],
+	"textdomain": "soli-gutenberg-theme",
+	"attributes": {
+		"rows": {
+			"type": "array",
+			"default": [
+				{ "label": "Datum", "value": "Zaterdag 11 april 2026" },
+				{ "label": "Locatie", "value": "Soli Muziekcentrum<br><span class=\"soli-detail-sub\">Kerkpad 85, Santpoort-Noord</span>" },
+				{ "label": "Programma", "value": "Oudenbossche Harmonie o.l.v. Koert Dirks<br>Soli Harmonie o.l.v. Vincent van den Bijlaard" },
+				{ "label": "Thema Soli", "value": "Film" }
+			]
+		}
+	},
+	"example": {
+		"attributes": {
+			"rows": [
+				{ "label": "Datum", "value": "Zaterdag 11 april 2026" },
+				{ "label": "Locatie", "value": "Soli Muziekcentrum" }
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

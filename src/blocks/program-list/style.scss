@@ -1,0 +1,44 @@
+/* soli/program-list — grid of works with maroon dots (mockup program list). */
+.wp-block-soli-program-list.soli-program-list,
+.wp-block-soli-program-list .soli-program-list {
+	list-style: none;
+	margin-block: 1.5rem;
+	padding: 0;
+	display: grid;
+	gap: 0.75rem 1.5rem;
+
+	@media (min-width: 600px) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.soli-program-list__item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+		margin: 0;
+		padding: 0.75rem 1rem;
+		background: var(--wp--preset--color--paper, #f5efe6);
+		border: 1px solid var(--wp--preset--color--line, #e6e2da);
+		border-radius: 8px;
+	}
+
+	.soli-program-list__dot {
+		flex-shrink: 0;
+		width: 8px;
+		height: 8px;
+		margin-top: 0.4rem;
+		border-radius: 9999px;
+		background: var(--wp--preset--color--maroon, #7a1f2b);
+	}
+
+	.soli-program-list__text {
+		font-size: 15px;
+		line-height: 1.35;
+		color: #2a2a2e;
+	}
+}
+
+/* Editor-only: the add/remove affordances. */
+.wp-block-soli-program-list .soli-program-list__remove {
+	margin-left: auto;
+}

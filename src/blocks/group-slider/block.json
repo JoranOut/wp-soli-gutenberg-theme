@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "soli/group-slider",
+	"version": "0.1.0",
+	"title": "Groepenslider",
+	"category": "widgets",
+	"icon": "images-alt2",
+	"description": "Carrousel van orkesten en groepen met shutter-overgang, autoplay en swipe.",
+	"keywords": [ "slider", "carrousel", "orkesten" ],
+	"textdomain": "soli-gutenberg-theme",
+	"attributes": {
+		"autoplay": {
+			"type": "number",
+			"default": 5000
+		},
+		"displayMode": {
+			"type": "string",
+			"default": "tile"
+		}
+	},
+	"providesContext": {
+		"soli/displayMode": "displayMode"
+	},
+	"allowedBlocks": [ "soli/group-card" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"interactivity": true,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScriptModule": "file:./view.js"
+}
