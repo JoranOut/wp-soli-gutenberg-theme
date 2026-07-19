@@ -1,0 +1,12 @@
+/*
+ * Editor-only styles for the single-post (post type "post") block editor.
+ * Loaded via add_editor_style() from functions.php, gated to the post editor
+ * screen, so it never affects pages, the Site Editor, or the front end.
+ *
+ * In an editor stylesheet the `body` selector maps to the editor canvas (the
+ * .editor-styles-wrapper), so this paints the writing surface paper. !important
+ * overrides the background that theme.json emits for the canvas.
+ */
+body {
+	background-color: var(--wp--preset--color--paper, #f5efe6) !important;
+}
