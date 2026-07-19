@@ -20,9 +20,14 @@ test.describe( 'Soli patterns', () => {
 			page.locator( '.soli-placeholder-note' ).first()
 		).toBeVisible();
 
-		// Group slider with the seeded groups.
+		// Group slider with the seeded groups. The seed fills it with every
+		// orchestra/ensemble, so assert a working carousel with several tiles
+		// rather than an exact count that changes when the group list does.
 		const slider = page.locator( '.wp-block-soli-group-slider' );
-		await expect( slider.locator( '.soli-tile' ) ).toHaveCount( 4 );
+		await expect( slider.locator( '.soli-tile' ).first() ).toBeVisible();
+		expect(
+			await slider.locator( '.soli-tile' ).count()
+		).toBeGreaterThanOrEqual( 4 );
 
 		// News section with seeded posts.
 		await expect(
