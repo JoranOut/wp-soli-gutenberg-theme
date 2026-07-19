@@ -1,0 +1,30 @@
+{
+  "name": "soli-gutenberg-theme",
+  "version": "0.1.0",
+  "description": "Gutenberg block theme for soli.nl",
+  "author": "Muziekvereniging Soli",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "build": "npm run build:blocks",
+    "build:blocks": "wp-scripts build --blocks-manifest --experimental-modules",
+    "start": "wp-scripts start --blocks-manifest --experimental-modules",
+    "i18n:make-pot": "wp-env run cli -- bash -c 'php -d memory_limit=512M /usr/local/bin/wp i18n make-pot wp-content/themes/wp-soli-gutenberg-theme wp-content/themes/wp-soli-gutenberg-theme/languages/soli-gutenberg-theme.pot --domain=soli-gutenberg-theme --exclude=node_modules,src,test-results,playwright-report'",
+    "i18n:make-mo": "wp-env run cli -- bash -c 'php -d memory_limit=512M /usr/local/bin/wp i18n make-mo wp-content/themes/wp-soli-gutenberg-theme/languages'",
+    "i18n:make-json": "wp-env run cli -- bash -c 'php -d memory_limit=512M /usr/local/bin/wp i18n make-json wp-content/themes/wp-soli-gutenberg-theme/languages --no-purge'",
+    "i18n:build": "npm run i18n:make-pot && npm run i18n:make-mo && npm run i18n:make-json",
+    "test:e2e": "wp-scripts test-playwright",
+    "test:e2e:watch": "wp-scripts test-playwright --watch",
+    "test:e2e:debug": "wp-scripts test-playwright --debug",
+    "env:start": "wp-env start",
+    "env:stop": "wp-env stop",
+    "env:reset": "wp-env clean all && wp-env start",
+    "publish": "npm run build && node ./publish.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@wordpress/e2e-test-utils-playwright": "^1.0.0",
+    "@wordpress/env": "^10.13.0",
+    "@wordpress/scripts": "^31.0.0",
+    "archiver": "^7.0.0"
+  }
+}
