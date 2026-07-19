@@ -11,6 +11,9 @@ permissions:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
+    # Skip release PRs - they need manual merge to trigger the release workflow
+    # (auto-merge uses GITHUB_TOKEN, which does not trigger subsequent workflows).
+    if: ${{ !startsWith(github.head_ref, 'release/') }}
     steps:
       - name: Enable auto-merge
         run: gh pr merge ${{ github.event.pull_request.number }} --auto --merge --repo ${{ github.repository }}
