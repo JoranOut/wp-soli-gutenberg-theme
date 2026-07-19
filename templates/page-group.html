@@ -1,0 +1,28 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"default"},"style":{"spacing":{"blockGap":"0"}}} -->
+<main class="wp-block-group">
+	<!-- wp:cover {"useFeaturedImage":true,"dimRatio":80,"overlayColor":"maroon","isUserOverlayColor":true,"minHeight":420,"align":"full","className":"soli-group-hero","layout":{"type":"constrained"}} -->
+	<div class="wp-block-cover alignfull soli-group-hero" style="min-height:420px">
+		<span aria-hidden="true" class="wp-block-cover__background has-maroon-background-color has-background-dim-80 has-background-dim"></span>
+		<div class="wp-block-cover__inner-container">
+			<!-- wp:paragraph {"className":"soli-group-hero-back","fontFamily":"sans","fontSize":"small"} -->
+			<p class="soli-group-hero-back has-sans-font-family has-small-font-size"><a href="/orkesten-en-groepen/">← Orkesten en groepen</a></p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:post-title {"level":1,"fontSize":"huge","textColor":"white"} /-->
+
+			<!-- wp:post-excerpt {"textColor":"white","fontSize":"large","className":"soli-group-hero-lede"} /-->
+		</div>
+	</div>
+	<!-- /wp:cover -->
+
+	<!-- wp:group {"layout":{"type":"constrained"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}}} -->
+	<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
+		<!-- wp:post-content {"align":"full","layout":{"type":"constrained"}} /-->
+	</div>
+	<!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
