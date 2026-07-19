@@ -1,0 +1,752 @@
+# Copyright (C) 2026 Muziekvereniging Soli
+# This file is distributed under the GNU General Public License v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Soli Gutenberg Theme 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/wp-soli-gutenberg-theme\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-15T10:00:04+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: soli-gutenberg-theme\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Soli Gutenberg Theme"
+msgstr "Soli Gutenberg Theme"
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://github.com/JoranOut/wp-soli-gutenberg-theme"
+msgstr "https://github.com/JoranOut/wp-soli-gutenberg-theme"
+
+#. Description of the theme
+#: style.css
+msgid "Block theme (Full Site Editing) for soli.nl — Muziekvereniging Soli, Driehuis, sinds 1909."
+msgstr "Block theme (Full Site Editing) for soli.nl — Muziekvereniging Soli, Driehuis, sinds 1909."
+
+#. Author of the theme
+#: style.css
+msgid "Muziekvereniging Soli"
+msgstr "Muziekvereniging Soli"
+
+#. Author URI of the theme
+#: style.css
+msgid "https://soli.nl"
+msgstr "https://soli.nl"
+
+#: build/blocks/group-slider/render.php:73
+msgid "Vorige"
+msgstr "Vorige"
+
+#: build/blocks/group-slider/render.php:74
+msgid "Volgende"
+msgstr "Volgende"
+
+#: functions.php:74
+msgid "Outline"
+msgstr "Outline"
+
+#: functions.php:94
+msgid "Gold CTA"
+msgstr "Gold CTA"
+
+#: functions.php:109
+msgid "Soli card"
+msgstr "Soli card"
+
+#: functions.php:138
+msgid "Placeholder"
+msgstr "Placeholder"
+
+#: functions.php:165
+msgid "Soli"
+msgstr "Soli"
+
+#: functions.php:166
+msgid "Patterns for the Soli website."
+msgstr "Patterns for the Soli website."
+
+#: patterns/cta-booking.php
+msgctxt "Pattern title"
+msgid "Steun Soli / boeken"
+msgstr "Steun Soli / boeken"
+
+#: patterns/cta-booking.php:18
+msgid "Steun Soli"
+msgstr "Steun Soli"
+
+#: patterns/cta-booking.php:32
+msgid "Steun Soli →"
+msgstr "Steun Soli →"
+
+#: patterns/cta-booking.php:36
+msgid "Boek Soli voor uw feest"
+msgstr "Boek Soli voor uw feest"
+
+#: patterns/cta-booking.php:46
+msgid "Jonge muzikanten van Soli tijdens een repetitie"
+msgstr "Jonge muzikanten van Soli tijdens een repetitie"
+
+#: patterns/group-detail-aside.php
+msgctxt "Pattern title"
+msgid "Groepsdetail zijbalk"
+msgstr "Groepsdetail zijbalk"
+
+#: patterns/group-detail-aside.php
+msgctxt "Pattern description"
+msgid "“Praktisch” en “Boeken & contact” kaarten voor een groepspagina."
+msgstr "“Praktisch” en “Boeken & contact” kaarten voor een groepspagina."
+
+#: patterns/group-detail-aside.php:17
+msgid "Praktisch"
+msgstr "Praktisch"
+
+#: patterns/group-detail-aside.php:21
+msgid "Opgericht"
+msgstr "Opgericht"
+
+#: patterns/group-detail-aside.php:21
+msgid "Bezetting"
+msgstr "Bezetting"
+
+#: patterns/group-detail-aside.php:21
+msgid "Repetitie"
+msgstr "Repetitie"
+
+#: patterns/group-detail-aside.php:29
+msgid "Boeken & contact"
+msgstr "Boeken & contact"
+
+#: patterns/group-detail-aside.php:33
+msgid "Deze groep is te boeken voor elke muzikale gelegenheid."
+msgstr "Deze groep is te boeken voor elke muzikale gelegenheid."
+
+#: patterns/group-detail-aside.php:37
+msgid "Contactpersoon"
+msgstr "Contactpersoon"
+
+#: patterns/group-detail-aside.php:43
+msgid "Boek deze groep →"
+msgstr "Boek deze groep →"
+
+#: patterns/group-section.php
+msgctxt "Pattern title"
+msgid "Groepensectie met kaarten"
+msgstr "Groepensectie met kaarten"
+
+#: patterns/group-section.php
+msgctxt "Pattern description"
+msgid "Sectiekop met een raster van groepskaarten. Dupliceer een kaart en kies de (kind-)pagina van de groep."
+msgstr "Sectiekop met een raster van groepskaarten. Dupliceer een kaart en kies de (kind-)pagina van de groep."
+
+#: patterns/group-section.php:17
+msgid "Eindorkesten"
+msgstr "Eindorkesten"
+
+#: patterns/hero-concert.php
+msgctxt "Pattern title"
+msgid "Hero met concertaankondiging"
+msgstr "Hero met concertaankondiging"
+
+#: patterns/hero-concert.php:22
+msgid "Volgende concert"
+msgstr "Volgende concert"
+
+#: patterns/hero-concert.php:36
+msgid "Kaarten & agenda →"
+msgstr "Kaarten & agenda →"
+
+#: patterns/hero-concert.php:40
+msgid "Word lid van Soli"
+msgstr "Word lid van Soli"
+
+#: patterns/hero-concert.php:52
+msgid "Concertprogramma"
+msgstr "Concertprogramma"
+
+#: patterns/hero-concert.php:67
+msgid "Dag"
+msgstr "Dag"
+
+#: patterns/hero-concert.php:74
+msgid "Aanvang"
+msgstr "Aanvang"
+
+#: patterns/hero-concert.php:81
+msgid "Locatie"
+msgstr "Locatie"
+
+#: patterns/hero-concert.php:88
+msgid "Dirigent"
+msgstr "Dirigent"
+
+#: patterns/hero-concert.php:96
+#: patterns/home-agenda-teaser.php:38
+msgid "Volledige agenda →"
+msgstr "Volledige agenda →"
+
+#: patterns/hidden-404.php
+msgctxt "Pattern title"
+msgid "404"
+msgstr "404"
+
+#: patterns/hidden-404.php:18
+msgid "Deze pagina is niet gevonden"
+msgstr "Deze pagina is niet gevonden"
+
+#: patterns/hidden-404.php:22
+msgid "De pagina die je zoekt bestaat niet (meer), of staat nog op de planning."
+msgstr "De pagina die je zoekt bestaat niet (meer), of staat nog op de planning."
+
+#: patterns/hidden-404.php:28
+msgid "Naar de homepage"
+msgstr "Naar de homepage"
+
+#: patterns/hidden-footer.php
+msgctxt "Pattern title"
+msgid "Footer"
+msgstr "Footer"
+
+#: patterns/hidden-footer.php:20
+msgid "Soli logo"
+msgstr "Soli logo"
+
+#: patterns/hidden-footer.php:30
+msgid "Sinds 1909 · Driehuis"
+msgstr "Sinds 1909 · Driehuis"
+
+#: patterns/hidden-footer.php:38
+msgid "Al sinds 1909 is Soli een van de grootste en gezelligste verenigingen uit de omgeving. Welkom bij repetitie, les of concert."
+msgstr "Al sinds 1909 is Soli een van de grootste en gezelligste verenigingen uit de omgeving. Welkom bij repetitie, les of concert."
+
+#: patterns/hidden-footer.php:46
+msgid "Vereniging"
+msgstr "Vereniging"
+
+#: patterns/hidden-footer.php:51
+msgid "Over Soli"
+msgstr "Over Soli"
+
+#: patterns/hidden-footer.php:52
+msgid "Lid worden"
+msgstr "Lid worden"
+
+#: patterns/hidden-footer.php:53
+#: patterns/page-vereniging.php:47
+msgid "Muziekcentrum"
+msgstr "Muziekcentrum"
+
+#: patterns/hidden-footer.php:54
+msgid "Eregalerij"
+msgstr "Eregalerij"
+
+#: patterns/hidden-footer.php:63
+msgid "Muziek maken"
+msgstr "Muziek maken"
+
+#: patterns/hidden-footer.php:68
+msgid "Orkesten en groepen"
+msgstr "Orkesten en groepen"
+
+#: patterns/hidden-footer.php:69
+#: patterns/home-welcome.php:46
+msgid "Muzieklessen"
+msgstr "Muzieklessen"
+
+#: patterns/hidden-footer.php:70
+#: patterns/home-agenda-teaser.php:26
+msgid "Agenda"
+msgstr "Agenda"
+
+#: patterns/hidden-footer.php:71
+msgid "Nieuws"
+msgstr "Nieuws"
+
+#: patterns/hidden-footer.php:80
+msgid "Contact"
+msgstr "Contact"
+
+#: patterns/hidden-footer.php:84
+msgid "Muziekcentrum Soli"
+msgstr "Muziekcentrum Soli"
+
+#: patterns/hidden-footer.php:84
+msgid "Driehuis"
+msgstr "Driehuis"
+
+#: patterns/hidden-footer.php:88
+msgid "Opleidingen:"
+msgstr "Opleidingen:"
+
+#: patterns/hidden-footer.php:108
+msgid "© Muziekvereniging Soli — Alle rechten voorbehouden."
+msgstr "© Muziekvereniging Soli — Alle rechten voorbehouden."
+
+#: patterns/hidden-footer.php:112
+msgid "Privacy"
+msgstr "Privacy"
+
+#: patterns/hidden-footer.php:112
+msgid "In veilige handen"
+msgstr "In veilige handen"
+
+#: patterns/hidden-header.php
+msgctxt "Pattern title"
+msgid "Header"
+msgstr "Header"
+
+#: patterns/hidden-header.php:36
+#: patterns/home-welcome.php:18
+msgid "Word lid"
+msgstr "Word lid"
+
+#: patterns/hidden-no-results.php
+msgctxt "Pattern title"
+msgid "No results"
+msgstr "No results"
+
+#: patterns/hidden-no-results.php:12
+msgid "Er zijn geen berichten gevonden."
+msgstr "Er zijn geen berichten gevonden."
+
+#: patterns/home-agenda-teaser.php
+msgctxt "Pattern title"
+msgid "Agenda-teaser (placeholder)"
+msgstr "Agenda-teaser (placeholder)"
+
+#: patterns/home-agenda-teaser.php
+msgctxt "Pattern description"
+msgid "“Binnenkort in de agenda” met voorbeeldrijen; wordt later vervangen door soli/event-view-list."
+msgstr "“Binnenkort in de agenda” met voorbeeldrijen; wordt later vervangen door soli/event-view-list."
+
+#: patterns/home-agenda-teaser.php:72
+#: patterns/page-agenda.php:131
+msgid "Voorbeeldweergave — wordt vervangen door soli/event-view-list (wp-soli-event-plugin)."
+msgstr "Voorbeeldweergave — wordt vervangen door soli/event-view-list (wp-soli-event-plugin)."
+
+#: patterns/home-groups-slider.php
+msgctxt "Pattern title"
+msgid "Orkesten en groepen slider"
+msgstr "Orkesten en groepen slider"
+
+#: patterns/home-groups-slider.php:19
+msgid "Een vereniging voor iedereen"
+msgstr "Een vereniging voor iedereen"
+
+#: patterns/home-groups-slider.php:33
+msgid "Alle orkesten en groepen →"
+msgstr "Alle orkesten en groepen →"
+
+#: patterns/home-news.php
+msgctxt "Pattern title"
+msgid "Laatste nieuws"
+msgstr "Laatste nieuws"
+
+#: patterns/home-news.php:19
+msgid "Laatste nieuws"
+msgstr "Laatste nieuws"
+
+#: patterns/home-news.php:31
+msgid "Meer nieuws →"
+msgstr "Meer nieuws →"
+
+#: patterns/home-welcome.php
+msgctxt "Pattern title"
+msgid "Welkom en muzieklessen"
+msgstr "Welkom en muzieklessen"
+
+#: patterns/home-welcome.php:32
+msgid "Meld je aan →"
+msgstr "Meld je aan →"
+
+#: patterns/home-welcome.php:36
+msgid "Over de vereniging"
+msgstr "Over de vereniging"
+
+#: patterns/home-welcome.php:69
+msgid "Alle lessen en groepen →"
+msgstr "Alle lessen en groepen →"
+
+#: patterns/page-agenda.php
+msgctxt "Pattern title"
+msgid "Agendapagina (placeholder)"
+msgstr "Agendapagina (placeholder)"
+
+#: patterns/page-agenda.php
+msgctxt "Pattern description"
+msgid "Startinhoud voor de agendapagina: maandkalender- en lijstweergave als voorbeeld; wordt vervangen door wp-soli-event-plugin. Gebruik het paginacanvas-sjabloon."
+msgstr "Startinhoud voor de agendapagina: maandkalender- en lijstweergave als voorbeeld; wordt vervangen door wp-soli-event-plugin. Gebruik het paginacanvas-sjabloon."
+
+#: patterns/page-agenda.php:42
+msgid "Concerten en repetities"
+msgstr "Concerten en repetities"
+
+#: patterns/page-agenda.php:93
+msgid "Voorbeeldweergave — wordt vervangen door soli/event-view-calendar (wp-soli-event-plugin)."
+msgstr "Voorbeeldweergave — wordt vervangen door soli/event-view-calendar (wp-soli-event-plugin)."
+
+#: patterns/page-group.php
+msgctxt "Pattern title"
+msgid "Groepspagina inhoud"
+msgstr "Groepspagina inhoud"
+
+#: patterns/page-group.php
+msgctxt "Pattern description"
+msgid "Startinhoud voor een orkest- of groepspagina (gebruik het Groepspagina-sjabloon): tekst met zijbalk."
+msgstr "Startinhoud voor een orkest- of groepspagina (gebruik het Groepspagina-sjabloon): tekst met zijbalk."
+
+#: patterns/page-group.php:33
+msgid "Meespelen?"
+msgstr "Meespelen?"
+
+#: patterns/page-group.php:37
+msgid "Er is nog plek voor nieuwe muzikanten. Kom gerust eens langs bij een repetitie."
+msgstr "Er is nog plek voor nieuwe muzikanten. Kom gerust eens langs bij een repetitie."
+
+#: patterns/page-home.php
+msgctxt "Pattern title"
+msgid "Homepagina"
+msgstr "Homepagina"
+
+#: patterns/page-home.php
+msgctxt "Pattern description"
+msgid "Volledige homepagina: hero, welkom, agenda-teaser, groepenslider, nieuws en steun-Soli."
+msgstr "Volledige homepagina: hero, welkom, agenda-teaser, groepenslider, nieuws en steun-Soli."
+
+#: patterns/page-mijn-pagina.php
+msgctxt "Pattern title"
+msgid "Mijn Soli (placeholder)"
+msgstr "Mijn Soli (placeholder)"
+
+#: patterns/page-mijn-pagina.php
+msgctxt "Pattern description"
+msgid "Startinhoud voor de ledenpagina in mockup-stijl; mededelingen en persoonlijke agenda worden later door Soli-plugins gevuld. Gebruik het paginacanvas-sjabloon."
+msgstr "Startinhoud voor de ledenpagina in mockup-stijl; mededelingen en persoonlijke agenda worden later door Soli-plugins gevuld. Gebruik het paginacanvas-sjabloon."
+
+#: patterns/page-mijn-pagina.php:38
+msgid "Website"
+msgstr "Website"
+
+#: patterns/page-mijn-pagina.php:38
+msgid "Mijn agenda"
+msgstr "Mijn agenda"
+
+#: patterns/page-mijn-pagina.php:42
+msgid "Uitloggen"
+msgstr "Uitloggen"
+
+#: patterns/page-mijn-pagina.php:60
+msgid "Welkom terug!"
+msgstr "Welkom terug!"
+
+#: patterns/page-mijn-pagina.php:90
+msgid "Mededelingen"
+msgstr "Mededelingen"
+
+#: patterns/page-mijn-pagina.php:116
+msgid "Voorbeeldweergave — “Mijn mededelingen” wordt geleverd door een Soli-plugin."
+msgstr "Voorbeeldweergave — “Mijn mededelingen” wordt geleverd door een Soli-plugin."
+
+#: patterns/page-mijn-pagina.php:158
+msgid "Voorbeeldweergave — wordt vervangen door soli/event-view-list, gefilterd op jouw orkesten (wp-soli-event-plugin)."
+msgstr "Voorbeeldweergave — wordt vervangen door soli/event-view-list, gefilterd op jouw orkesten (wp-soli-event-plugin)."
+
+#: patterns/page-mijn-pagina.php:188
+msgid "Voorbeeldweergave — “Mijn orkesten” volgt uit je lidmaatschap."
+msgstr "Voorbeeldweergave — “Mijn orkesten” volgt uit je lidmaatschap."
+
+#: patterns/page-orkesten.php
+msgctxt "Pattern title"
+msgid "Orkesten en groepen overzicht"
+msgstr "Orkesten en groepen overzicht"
+
+#: patterns/page-orkesten.php
+msgctxt "Pattern description"
+msgid "Overzichtspagina met hero en secties (Orkesten, Ensembles, Opleidingsgroepen) vol groepskaarten. Gebruik het paginacanvas-sjabloon."
+msgstr "Overzichtspagina met hero en secties (Orkesten, Ensembles, Opleidingsgroepen) vol groepskaarten. Gebruik het paginacanvas-sjabloon."
+
+#: patterns/page-orkesten.php:21
+msgid "Onze muziek"
+msgstr "Onze muziek"
+
+#: patterns/page-vereniging.php
+msgctxt "Pattern title"
+msgid "Verenigingspagina"
+msgstr "Verenigingspagina"
+
+#: patterns/page-vereniging.php
+msgctxt "Pattern description"
+msgid "Startinhoud voor de verenigingspagina: intro, waarom lid worden en linkraster naar onderliggende pagina's. Gebruik het paginacanvas-sjabloon."
+msgstr "Startinhoud voor de verenigingspagina: intro, waarom lid worden en linkraster naar onderliggende pagina's. Gebruik het paginacanvas-sjabloon."
+
+#: patterns/page-vereniging.php:43
+msgid "Waarom lid worden →"
+msgstr "Waarom lid worden →"
+
+#: patterns/page-vereniging.php:57
+msgid "Groepsfoto van Muziekvereniging Soli voor de muziektent"
+msgstr "Groepsfoto van Muziekvereniging Soli voor de muziektent"
+
+#: patterns/social-row.php
+msgctxt "Pattern title"
+msgid "Social media rij (placeholder)"
+msgstr "Social media rij (placeholder)"
+
+#: build/blocks/group-card/index.js:1
+msgid "Groep"
+msgstr "Groep"
+
+#: build/blocks/group-card/index.js:1
+msgid "Pagina"
+msgstr "Pagina"
+
+#: build/blocks/group-card/index.js:1
+msgid "De pagina van het orkest of de groep. Foto (uitgelichte afbeelding), naam en tagline (samenvatting) komen van deze pagina."
+msgstr "De pagina van het orkest of de groep. Foto (uitgelichte afbeelding), naam en tagline (samenvatting) komen van deze pagina."
+
+#: build/blocks/group-card/index.js:1
+msgid "Repetitiemoment"
+msgstr "Repetitiemoment"
+
+#: build/blocks/group-card/index.js:1
+msgid "Bijvoorbeeld: “ma · 20:00 – 22:00”."
+msgstr "Bijvoorbeeld: “ma · 20:00 – 22:00”."
+
+#: build/blocks/group-card/index.js:1
+msgid "Pijl tonen bij hover"
+msgstr "Pijl tonen bij hover"
+
+#: build/blocks/group-card/index.js:1
+msgid "Groepskaart"
+msgstr "Groepskaart"
+
+#: build/blocks/group-card/index.js:1
+msgid "Kies in de zijbalk de pagina van het orkest of de groep."
+msgstr "Kies in de zijbalk de pagina van het orkest of de groep."
+
+#: build/blocks/group-slider/index.js:1
+msgid "Slider"
+msgstr "Slider"
+
+#: build/blocks/group-slider/index.js:1
+msgid "Automatisch afspelen"
+msgstr "Automatisch afspelen"
+
+#: build/blocks/group-slider/index.js:1
+msgid "Interval (seconden)"
+msgstr "Interval (seconden)"
+
+#: build/blocks/group-card/block.json
+msgctxt "block title"
+msgid "Groepskaart"
+msgstr "Groepskaart"
+
+#: build/blocks/group-card/block.json
+msgctxt "block description"
+msgid "Kaart voor een orkest of groep, gekoppeld aan een pagina: foto, naam, tagline en repetitiemoment."
+msgstr "Kaart voor een orkest of groep, gekoppeld aan een pagina: foto, naam, tagline en repetitiemoment."
+
+#: build/blocks/group-card/block.json
+msgctxt "block keyword"
+msgid "orkest"
+msgstr "orkest"
+
+#: build/blocks/group-card/block.json
+msgctxt "block keyword"
+msgid "groep"
+msgstr "groep"
+
+#: build/blocks/group-card/block.json
+msgctxt "block keyword"
+msgid "kaart"
+msgstr "kaart"
+
+#: build/blocks/group-slider/block.json
+msgctxt "block title"
+msgid "Groepenslider"
+msgstr "Groepenslider"
+
+#: build/blocks/group-slider/block.json
+msgctxt "block description"
+msgid "Carrousel van orkesten en groepen met shutter-overgang, autoplay en swipe."
+msgstr "Carrousel van orkesten en groepen met shutter-overgang, autoplay en swipe."
+
+#: build/blocks/group-slider/block.json
+msgctxt "block keyword"
+msgid "slider"
+msgstr "slider"
+
+#: build/blocks/group-slider/block.json
+msgctxt "block keyword"
+msgid "carrousel"
+msgstr "carrousel"
+
+#: build/blocks/group-slider/block.json
+msgctxt "block keyword"
+msgid "orkesten"
+msgstr "orkesten"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Maroon"
+msgstr "Maroon"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Maroon dark"
+msgstr "Maroon dark"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Gold"
+msgstr "Gold"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Ink"
+msgstr "Ink"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Muted"
+msgstr "Muted"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Cream"
+msgstr "Cream"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Paper"
+msgstr "Paper"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Sand"
+msgstr "Sand"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Line"
+msgstr "Line"
+
+#: theme.json
+msgctxt "Color name"
+msgid "White"
+msgstr "White"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Maroon fade"
+msgstr "Maroon fade"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Ink overlay"
+msgstr "Ink overlay"
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Playfair Display"
+msgstr "Playfair Display"
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Source Serif 4"
+msgstr "Source Serif 4"
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Inter"
+msgstr "Inter"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Eyebrow"
+msgstr "Eyebrow"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr "Small"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Body"
+msgstr "Body"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr "Large"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Heading"
+msgstr "Heading"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Section heading"
+msgstr "Section heading"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Hero"
+msgstr "Hero"
+
+#: theme.json
+msgctxt "Space size name"
+msgid "2X-Small"
+msgstr "2X-Small"
+
+#: theme.json
+msgctxt "Space size name"
+msgid "X-Small"
+msgstr "X-Small"
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Small"
+msgstr "Small"
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Medium"
+msgstr "Medium"
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Large"
+msgstr "Large"
+
+#: theme.json
+msgctxt "Space size name"
+msgid "X-Large"
+msgstr "X-Large"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr "Header"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr "Footer"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Groepspagina"
+msgstr "Groepspagina"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Paginacanvas (zonder titel)"
+msgstr "Paginacanvas (zonder titel)"
