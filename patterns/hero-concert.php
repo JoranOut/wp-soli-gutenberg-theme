@@ -27,7 +27,7 @@
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"className":"soli-hero-lede","style":{"color":{"text":"#e7e0d2"},"typography":{"fontSize":"18px","lineHeight":"1.625"}}} -->
-				<p class="soli-hero-lede has-text-color" style="color:#e7e0d2;font-size:18px;line-height:1.625">Enkele blazers van Soli, aangevuld met strijkers uit de regio, repeteren o.l.v. Sjoerd Haver voor de uitvoering van de IJmuider Symfonie — een avondvullend programma voor iedereen die van orkestmuziek houdt.</p>
+				<p class="soli-hero-lede has-text-color" style="color:#e7e0d2;font-size:18px;line-height:1.625">Enkele blazers van Soli, aangevuld met strijkers uit de regio, repeteren o.l.v. Sjoerd Haver voor de uitvoering van de IJmuider Symfonie: een avondvullend programma voor iedereen die van orkestmuziek houdt.</p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:buttons -->
@@ -44,8 +44,8 @@
 			</div>
 			<!-- /wp:column -->
 
-			<!-- wp:column {"verticalAlignment":"bottom"} -->
-			<div class="wp-block-column is-vertically-aligned-bottom">
+			<!-- wp:column {"verticalAlignment":"center"} -->
+			<div class="wp-block-column is-vertically-aligned-center">
 				<!-- wp:group {"className":"soli-program-card","backgroundColor":"cream","textColor":"ink","layout":{"type":"default"},"style":{"border":{"color":"var:preset|color|gold","width":"1px","style":"solid","radius":"var:custom|card-radius"},"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40","right":"var:preset|spacing|40"},"blockGap":"var:preset|spacing|20"},"elements":{"link":{"color":{"text":"var:preset|color|gold"}}}}} -->
 				<div class="wp-block-group soli-program-card has-border-color has-cream-background-color has-ink-color has-text-color has-background has-link-color" style="border-color:var(--wp--preset--color--gold);border-style:solid;border-width:1px;border-radius:var(--wp--custom--card-radius);padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)">
 					<!-- wp:paragraph {"className":"soli-program-eyebrow"} -->

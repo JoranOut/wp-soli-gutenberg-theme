@@ -13,16 +13,12 @@
 <section class="wp-block-group" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--30)">
 	<!-- wp:group {"layout":{"type":"constrained","contentSize":"720px","justifyContent":"left"},"style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
 	<div class="wp-block-group">
-		<!-- wp:paragraph {"className":"soli-eyebrow"} -->
-		<p class="soli-eyebrow"><?php esc_html_e( 'Eindorkesten', 'soli-gutenberg-theme' ); ?></p>
-		<!-- /wp:paragraph -->
-
 		<!-- wp:heading -->
 		<h2 class="wp-block-heading">Orkesten</h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:paragraph {"textColor":"muted"} -->
-		<p class="has-muted-color has-text-color">Soli beschikt over een breed scala aan eindorkesten. Samen representeren ze bijna alle vormen van muziek — van jazz en klassiek tot lichte muziek.</p>
+		<p class="has-muted-color has-text-color">Soli beschikt over een breed scala aan eindorkesten. Samen representeren ze bijna alle vormen van muziek, van jazz en klassiek tot lichte muziek.</p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->

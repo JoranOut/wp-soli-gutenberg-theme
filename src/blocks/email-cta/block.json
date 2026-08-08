@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "soli/email-cta",
+	"version": "0.1.0",
+	"title": "E-mail-oproep",
+	"category": "widgets",
+	"icon": "email-alt",
+	"description": "Knop die een voorbeeld-e-mail in een dialoog toont, met acties om te kopiëren of in het mailprogramma te openen.",
+	"keywords": [ "email", "e-mail", "contact", "mailto", "oproep", "cta" ],
+	"textdomain": "soli-gutenberg-theme",
+	"attributes": {
+		"buttonText": {
+			"type": "string",
+			"default": "Stuur een e-mail"
+		},
+		"dialogTitle": {
+			"type": "string",
+			"default": "Voorbeeld e-mail"
+		},
+		"to": {
+			"type": "string",
+			"default": ""
+		},
+		"cc": {
+			"type": "string",
+			"default": ""
+		},
+		"bcc": {
+			"type": "string",
+			"default": ""
+		},
+		"subject": {
+			"type": "string",
+			"default": ""
+		},
+		"body": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"example": {
+		"attributes": {
+			"buttonText": "Stuur een e-mail",
+			"dialogTitle": "Voorbeeld e-mail",
+			"to": "info@soli.nl",
+			"subject": "Vraag over lid worden",
+			"body": "Beste Soli,\n\nIk zou graag meer willen weten over lid worden.\n\nMet vriendelijke groet,"
+		}
+	},
+	"supports": {
+		"html": false,
+		"interactivity": true,
+		"align": false,
+		"spacing": {
+			"margin": true,
+			"padding": false
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScriptModule": "file:./view.js"
+}

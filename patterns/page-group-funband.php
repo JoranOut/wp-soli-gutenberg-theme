@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Groepspagina — Funband
+ * Title: Groepspagina: Funband
  * Slug: soli-gutenberg-theme/page-group-funband
  * Categories: soli
  * Description: Volledige inhoud voor de Funband-pagina (tekst, video en zijbalk met echte contactgegevens). Gebruik het Groepspagina-sjabloon.
@@ -13,8 +13,8 @@
 <div class="wp-block-columns alignwide">
 	<!-- wp:column {"className":"soli-fb-main"} -->
 	<div class="wp-block-column soli-fb-main">
-		<!-- wp:paragraph {"fontSize":"large"} -->
-		<p class="has-large-font-size">De Funband is een van de ensembles van Soli. De band bestaat uit een 15-tal enthousiaste muzikanten uit de vereniging.</p>
+		<!-- wp:paragraph {"className":"soli-page-lede"} -->
+		<p class="soli-page-lede">De Funband is een van de ensembles van Soli. De band bestaat uit een 15-tal enthousiaste muzikanten uit de vereniging.</p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:paragraph -->
@@ -22,20 +22,16 @@
 		<!-- /wp:paragraph -->
 
 		<!-- wp:paragraph -->
-		<p>De Funband is sinds zijn oprichting in 2015 al actief bij verschillende evenementen, van verjaardagen tot grote evenementen als de Sneeker Dweildag. Wilt u ook een muzikale omlijsting van uw evenement? De Funband is te boeken voor elke muzikale gelegenheid — of het nu gaat om een verjaardag, jubileum, bruiloft of braderie.</p>
+		<p>De Funband is sinds zijn oprichting in 2015 al actief bij verschillende evenementen, van verjaardagen tot grote evenementen als de Sneeker Dweildag. Wilt u ook een muzikale omlijsting van uw evenement? De Funband is te boeken voor elke muzikale gelegenheid, of het nu gaat om een verjaardag, jubileum, bruiloft of braderie.</p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:paragraph -->
 		<p>De Funband repeteert eens per drie weken op vrijdag- of zaterdagavond van 19.30 tot 22.00 uur.</p>
 		<!-- /wp:paragraph -->
 
-		<!-- wp:group {"className":"soli-embed","layout":{"type":"flex","justifyContent":"center","verticalAlignment":"center"}} -->
-		<div class="wp-block-group soli-embed">
-			<!-- wp:paragraph {"align":"center","className":"soli-embed-label","textColor":"white"} -->
-			<p class="has-text-align-center soli-embed-label has-white-color has-text-color">▶ <?php esc_html_e( 'Funband in beeld', 'soli-gutenberg-theme' ); ?></p>
-			<!-- /wp:paragraph -->
-		</div>
-		<!-- /wp:group -->
+		<!-- wp:image {"sizeSlug":"large","className":"soli-card-media","style":{"spacing":{"margin":{"top":"2rem"}}}} -->
+		<figure class="wp-block-image size-large soli-card-media" style="margin-top:2rem"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/demo/funband.jpg' ) ); ?>" alt="<?php esc_attr_e( 'De Funband speelt op een boot tijdens een optreden op het water', 'soli-gutenberg-theme' ); ?>"/><figcaption class="wp-element-caption"><?php esc_html_e( 'De Funband in actie.', 'soli-gutenberg-theme' ); ?></figcaption></figure>
+		<!-- /wp:image -->
 
 		<!-- wp:group {"className":"is-style-soli-card","backgroundColor":"paper","layout":{"type":"default"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}}} -->
 		<div class="wp-block-group is-style-soli-card has-paper-background-color has-background" style="margin-top:var(--wp--preset--spacing--50)">
@@ -64,8 +60,8 @@
 		<div class="wp-block-group">
 			<!-- wp:group {"className":"is-style-soli-panel","layout":{"type":"default"},"style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
 			<div class="wp-block-group is-style-soli-panel">
-				<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"22px"}}} -->
-				<h3 class="wp-block-heading" style="font-size:22px"><?php esc_html_e( 'Praktisch', 'soli-gutenberg-theme' ); ?></h3>
+				<!-- wp:heading {"style":{"typography":{"fontSize":"22px"}}} -->
+				<h2 class="wp-block-heading" style="font-size:22px"><?php esc_html_e( 'Praktisch', 'soli-gutenberg-theme' ); ?></h2>
 				<!-- /wp:heading -->
 
 				<!-- wp:group {"className":"soli-fact-list","layout":{"type":"default"},"style":{"spacing":{"blockGap":"1rem"}}} -->
@@ -87,7 +83,7 @@
 					<!-- wp:group {"className":"soli-fact","layout":{"type":"default"},"style":{"spacing":{"blockGap":"0.15rem"}}} -->
 					<div class="wp-block-group soli-fact">
 						<!-- wp:paragraph {"className":"soli-fact-label"} --><p class="soli-fact-label"><?php esc_html_e( 'Repetitie', 'soli-gutenberg-theme' ); ?></p><!-- /wp:paragraph -->
-						<!-- wp:paragraph {"className":"soli-fact-value"} --><p class="soli-fact-value"><?php esc_html_e( 'eens per drie weken, vrij/za 19.30–22.00 uur', 'soli-gutenberg-theme' ); ?></p><!-- /wp:paragraph -->
+						<!-- wp:paragraph {"className":"soli-fact-value"} --><p class="soli-fact-value"><?php esc_html_e( 'eens per drie weken, vrij/za 19.30-22.00 uur', 'soli-gutenberg-theme' ); ?></p><!-- /wp:paragraph -->
 					</div>
 					<!-- /wp:group -->
 				</div>
@@ -97,8 +93,8 @@
 
 			<!-- wp:group {"className":"is-style-soli-panel","layout":{"type":"default"},"style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
 			<div class="wp-block-group is-style-soli-panel">
-				<!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"22px"}}} -->
-				<h3 class="wp-block-heading" style="font-size:22px"><?php esc_html_e( 'Boeken & contact', 'soli-gutenberg-theme' ); ?></h3>
+				<!-- wp:heading {"style":{"typography":{"fontSize":"22px"}}} -->
+				<h2 class="wp-block-heading" style="font-size:22px"><?php esc_html_e( 'Boeken & contact', 'soli-gutenberg-theme' ); ?></h2>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"fontSize":"small"} -->
@@ -112,13 +108,19 @@
 				</div>
 				<!-- /wp:group -->
 
-				<!-- wp:buttons -->
-				<div class="wp-block-buttons">
-					<!-- wp:button -->
-					<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="mailto:funband@soli.nl"><?php esc_html_e( 'Boek de Funband →', 'soli-gutenberg-theme' ); ?></a></div>
-					<!-- /wp:button -->
-				</div>
-				<!-- /wp:buttons -->
+<?php
+			$soli_fb_booking = array(
+				'buttonText'  => __( 'Boek de Funband →', 'soli-gutenberg-theme' ),
+				'dialogTitle' => __( 'Boek de Funband', 'soli-gutenberg-theme' ),
+				'to'          => 'funband@soli.nl',
+				'subject'     => __( 'Boekingsaanvraag Funband', 'soli-gutenberg-theme' ),
+				'body'        => __(
+					"Beste Funband,\n\nGraag zou ik de Funband willen boeken voor het volgende evenement:\n\nGelegenheid:\nDatum:\nLocatie:\nGeschat aantal gasten:\n\nMet vriendelijke groet,",
+					'soli-gutenberg-theme'
+				),
+			);
+			?>
+				<!-- wp:soli/email-cta <?php echo wp_json_encode( $soli_fb_booking ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_json_encode returns valid, escaped JSON for the block comment. ?> /-->
 			</div>
 			<!-- /wp:group -->
 		</div>

@@ -41,10 +41,28 @@ test.describe( 'Soli patterns', () => {
 			page.locator( 'h1', { hasText: 'Orkesten en groepen' } )
 		).toBeVisible();
 
+		// The pattern resolves the seeded group pages by slug, so the overview
+		// must show real linked cards — an empty catalogue is a regression.
+		await expect( page.locator( 'a.soli-og-card' ).first() ).toBeVisible();
+		expect(
+			await page.locator( 'a.soli-og-card' ).count()
+		).toBeGreaterThanOrEqual( 10 );
+
 		await page.goto( '/orkesten-en-groepen/funband/' );
 		await expect( page.locator( 'h1', { hasText: 'Funband' } ) ).toBeVisible();
 		await expect(
-			page.locator( 'h3', { hasText: 'Praktisch' } )
+			page.locator( 'h2', { hasText: 'Praktisch' } )
+		).toBeVisible();
+	} );
+
+	test( 'lid-worden section offers a concrete action', async ( { page } ) => {
+		await page.goto( '/vereniging/' );
+		const section = page.locator( '#lid-worden' );
+		await expect(
+			section.locator( 'a', { hasText: 'Meld je aan via e-mail' } )
+		).toBeVisible();
+		await expect(
+			section.locator( 'a[href^="mailto:"]' ).first()
 		).toBeVisible();
 	} );
 

@@ -47,7 +47,7 @@ $soli_weeks = array_chunk( $soli_cells, 7 );
 	<!-- /wp:heading -->
 
 	<!-- wp:paragraph {"textColor":"muted"} -->
-	<p class="has-muted-color has-text-color">Repetities, concerten en muzikale momenten — bekijk wat er op het programma staat.</p>
+	<p class="has-muted-color has-text-color">Repetities, concerten en muzikale momenten. Bekijk wat er op het programma staat.</p>
 	<!-- /wp:paragraph -->
 </section>
 <!-- /wp:group -->
@@ -90,7 +90,7 @@ $soli_weeks = array_chunk( $soli_cells, 7 );
 		<!-- /wp:table -->
 
 		<!-- wp:paragraph {"className":"soli-placeholder-note"} -->
-		<p class="soli-placeholder-note"><?php esc_html_e( 'Voorbeeldweergave — wordt vervangen door soli/event-view-calendar (wp-soli-event-plugin).', 'soli-gutenberg-theme' ); ?></p>
+		<p class="soli-placeholder-note"><?php esc_html_e( 'Voorbeeldweergave, wordt vervangen door soli/event-view-calendar (wp-soli-event-plugin).', 'soli-gutenberg-theme' ); ?></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
@@ -128,7 +128,7 @@ $soli_weeks = array_chunk( $soli_cells, 7 );
 		<!-- /wp:group -->
 
 		<!-- wp:paragraph {"className":"soli-placeholder-note"} -->
-		<p class="soli-placeholder-note"><?php esc_html_e( 'Voorbeeldweergave — wordt vervangen door soli/event-view-list (wp-soli-event-plugin).', 'soli-gutenberg-theme' ); ?></p>
+		<p class="soli-placeholder-note"><?php esc_html_e( 'Voorbeeldweergave, wordt vervangen door soli/event-view-list (wp-soli-event-plugin).', 'soli-gutenberg-theme' ); ?></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->

@@ -88,6 +88,23 @@
 	}
 }
 
+/* Stand-in for a card without a (published) page — rendered for editors only. */
+.wp-block-soli-group-card.soli-og-card--unlinked {
+	background: transparent;
+	border-style: dashed;
+
+	&:hover {
+		transform: none;
+		box-shadow: none;
+		border-color: var(--wp--preset--color--line, #e6e2da);
+	}
+
+	.soli-og-card-name,
+	.soli-og-card-tag {
+		color: var(--wp--preset--color--muted, #5a5a5e);
+	}
+}
+
 /* soli/group-card — tile face inside soli/group-slider (mockup .soli-tile). */
 .wp-block-soli-group-card.soli-tile {
 	flex: 0 0 100%;

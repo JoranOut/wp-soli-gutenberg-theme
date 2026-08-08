@@ -13,10 +13,10 @@
 		"items": {
 			"type": "array",
 			"default": [
-				"A Klezmer Karnival — Philip Sparke",
-				"Utopia — Jacob de Haan",
-				"Up — arr. Michael Brown",
-				"Brabants Volkslied — Guus Meeuwis"
+				"A Klezmer Karnival, Philip Sparke",
+				"Utopia, Jacob de Haan",
+				"Up, arr. Michael Brown",
+				"Brabants Volkslied, Guus Meeuwis"
 			]
 		}
 	},

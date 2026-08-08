@@ -11,3 +11,14 @@ artifacts/
 # Stray local development screenshots (not part of the theme).
 /mockup-nieuws.png
 /overview.png
+
+# Local agent/tooling artifacts. These belong to the machine, not the theme.
+.claude/
+.agents/
+.impeccable/
+.playwright-mcp/
+/1002/
+skills-lock.json
+cookies.txt
+*.tgz
+test-uploads/

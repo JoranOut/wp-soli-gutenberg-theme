@@ -9,6 +9,13 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+/* Content pages read on a white canvas; only the front page (body.home) keeps
+   the full cream canvas from theme.json. Sections that declare their own
+   background (paper/sand bands, maroon heroes, the cream header) keep it. */
+body:not(.home) {
+	background-color: var(--wp--preset--color--white);
+}
+
 /* Sticky site header (applied to the header template part wrapper). */
 .soli-header {
 	position: sticky;
@@ -24,21 +31,24 @@ body {
 /* "Word lid" CTA: the standalone button shows on desktop; on mobile it is
    hidden and the equivalent nav-link (.soli-mobile-cta) takes over inside the
    collapsed navigation overlay. Breakpoint matches core/navigation (600px). */
-@media (max-width: 599.98px) {
+@container soli (max-width: 599.98px) {
 	.soli-header .soli-header-cta {
 		display: none;
 	}
 }
 
-@media (min-width: 600px) {
+@container soli (min-width: 600px) {
 	.soli-header .soli-mobile-cta {
 		display: none;
 	}
 }
 
 /* Full-height layout so the footer always sits at the bottom of the viewport,
-   even on short pages: main grows to fill the leftover space. */
+   even on short pages: main grows to fill the leftover space. Also the page's
+   container-query root: width-based rules below use @container soli (...)
+   instead of viewport media queries. */
 .wp-site-blocks {
+	container: soli / inline-size;
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
@@ -226,10 +236,84 @@ h2 + .soli-lead,
 
 /* Section lead paragraph — slightly larger, relaxed, soft ink. */
 .soli-lead {
-	font-size: 17px;
+	font-size: 18px;
 	line-height: 1.625;
 	color: #3a3a3e;
 	max-width: 44ch;
+}
+
+/* Page lede — the opening paragraph of a page: a half-step heavier serif in
+   maroon-dark, so the intro reads as the club's voice instead of merely
+   bigger body text. */
+.soli-page-lede {
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 1.6;
+	color: var(--wp--preset--color--maroon-dark);
+	max-width: 60ch;
+	/* Constrained layouts center narrow children with !important auto margins;
+	   the lede stays left-aligned under its page title. */
+	margin-left: 0 !important;
+	margin-right: auto !important;
+}
+
+/* Ink callout — closing CTA card on info pages: the footer's dark ink returns
+   mid-page, over a tinted club photo (same treatment as the Mijn Soli
+   spotlight). Links go cream, the action button gold on ink. */
+.soli-card-ink {
+	position: relative;
+	overflow: hidden;
+	border-color: transparent;
+}
+
+.soli-card-ink::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: url("../images/demo/groepsfoto.jpg") center / cover no-repeat;
+	opacity: 0.4;
+}
+
+.soli-card-ink::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.35));
+}
+
+.soli-card-ink > * {
+	position: relative;
+	z-index: 1;
+}
+
+.soli-card-ink a {
+	color: var(--wp--preset--color--cream);
+}
+
+.soli-card-ink .wp-element-button,
+.soli-spotlight .wp-element-button,
+.soli-card-ink .wp-block-soli-email-cta .soli-email-cta__button {
+	background: var(--wp--preset--color--gold);
+	border-color: var(--wp--preset--color--gold);
+	color: var(--wp--preset--color--ink);
+}
+
+.soli-card-ink .wp-element-button:hover,
+.soli-spotlight .wp-element-button:hover,
+.soli-card-ink .wp-block-soli-email-cta .soli-email-cta__button:hover {
+	background: var(--wp--preset--color--cream);
+	border-color: var(--wp--preset--color--cream);
+	color: var(--wp--preset--color--ink);
+}
+
+/* Front-page hero: the columns row spans the hero's content height (min-height
+   minus the cover paddings) so the programme card can center itself vertically
+   while the text column stays anchored bottom-left. Only when the columns sit
+   side by side; stacked (mobile) they keep their natural height. */
+@container soli (min-width: 782px) {
+	.soli-hero .wp-block-cover__inner-container > .wp-block-columns {
+		min-height: calc(780px - 80px - 112px);
+	}
 }
 
 /* Read-more links (query loops) — maroon uppercase with underline. */
@@ -254,16 +338,18 @@ h2 + .soli-lead,
 	transform: translateY(-2px);
 }
 
-/* News/archive cards: no resting shadow, and a lighter shadow than the default
-   only on hover. Covers the masonry listing cards plus the feature card on the
-   posts page (.blog); the front-page feature/social cards keep their shadow. */
+/* News cards: no resting shadow, and a lighter shadow than the default only on
+   hover. Covers the masonry listing cards, the feature card, and the
+   front-page news grid, so /nieuws and the home news section match. */
 .wp-block-soli-masonry .is-style-soli-card,
-.blog .soli-news-feature {
+.soli-news-grid .is-style-soli-card,
+.soli-news-feature {
 	box-shadow: none;
 }
 
 .wp-block-soli-masonry .is-style-soli-card:hover,
-.blog .soli-news-feature:hover {
+.soli-news-grid .is-style-soli-card:hover,
+.soli-news-feature:hover {
 	box-shadow: 0 8px 20px rgba(26, 26, 46, 0.1);
 }
 
@@ -324,7 +410,7 @@ h2 + .soli-lead,
 .soli-program-label {
 	min-width: 92px;
 	font-family: var(--wp--preset--font-family--sans);
-	font-size: 11px;
+	font-size: 12px;
 	font-weight: 500;
 	letter-spacing: var(--wp--custom--letter-spacing--label);
 	text-transform: uppercase;
@@ -389,7 +475,7 @@ h2 + .soli-lead,
 /* Mijn Soli — white quick-links bar on the maroon hero. */
 .soli-quicklinks {
 	background: #fff;
-	border-radius: 12px;
+	border-radius: var(--wp--custom--card-radius);
 	padding: 0.75rem 1.4rem;
 	gap: 1.6rem;
 	box-shadow: 0 6px 18px rgba(26, 26, 46, 0.18);
@@ -397,6 +483,9 @@ h2 + .soli-lead,
 
 .soli-quicklinks p {
 	margin: 0;
+	/* The maroon hero sets white text; on the white bar the labels (and the
+	   currentColor icon glyphs) must read as ink. */
+	color: var(--wp--preset--color--ink);
 }
 
 .soli-quicklinks a {
@@ -460,55 +549,9 @@ h2 + .soli-lead,
 	object-fit: cover;
 }
 
-/* News card titles render as ink, not link-maroon (mockup); maroon on hover. */
-.soli-news-feature h3 a,
-.soli-news-small h3 a {
-	color: var(--wp--preset--color--ink);
-	text-decoration: none;
-}
-
-.soli-news-feature h3 a:hover,
-.soli-news-small h3 a:hover {
-	color: var(--wp--preset--color--maroon);
-}
-
-/* Home news — small stacked cards with a gold accent. */
-.soli-news-small {
-	border-left: 3px solid var(--wp--preset--color--gold);
-}
-
-.wp-block-post-template .wp-block-post + .wp-block-post {
+/* Stacked (non-grid) post lists get breathing room between cards. */
+.wp-block-post-template:not(.is-layout-grid) .wp-block-post + .wp-block-post {
 	margin-top: 1rem;
-}
-
-/* Social row — platform badge on the photo. The cover image is square on all
-   corners; the card's own overflow:hidden rounds only the top to the card
-   radius, so there's no rounded notch where the image meets the caption. */
-.soli-social-card {
-	overflow: hidden;
-}
-
-.soli-social-card .wp-block-cover,
-.soli-social-card .wp-block-cover__image-background,
-.soli-social-card img {
-	border-radius: 0;
-}
-
-/* Taller social photos (1.5× the pattern's base). !important overrides the
-   inline min-height baked into the seeded front-page markup. */
-.soli-social-card .wp-block-cover {
-	min-height: 345px !important;
-}
-
-.soli-social-badge {
-	display: inline-block;
-	padding: 0.2rem 0.6rem;
-	border-radius: 999px;
-	background: rgba(26, 26, 46, 0.72);
-	color: #fff;
-	font-family: var(--wp--preset--font-family--sans);
-	font-size: 11px;
-	font-weight: 600;
 }
 
 /* Calendar placeholder table — equal columns, calendar-like cells. */
@@ -540,9 +583,8 @@ h2 + .soli-lead,
 .soli-placeholder-note {
 	font-family: var(--wp--preset--font-family--sans);
 	font-size: 12px;
+	font-style: italic;
 	color: var(--wp--preset--color--muted);
-	border-left: 3px solid var(--wp--preset--color--sand);
-	padding-left: 0.6rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -569,12 +611,16 @@ h2 + .soli-lead,
 
 .is-style-soli-panel ul.soli-index-list li {
 	margin: 0;
-	padding: 0;
+	padding: 5px 25px;
 	border-top: 1px solid var(--wp--preset--color--line);
 }
 
+/* The .wp-block-list first-child rule above zeroes padding-top at equal
+   specificity; re-declare it here (same specificity, later in source) so the
+   first item keeps the 5px top padding. */
 .is-style-soli-panel ul.soli-index-list li:first-child {
 	border-top: 0;
+	padding-top: 5px;
 }
 
 .is-style-soli-panel ul.soli-index-list a {
@@ -588,7 +634,7 @@ h2 + .soli-lead,
 
 .soli-index-label {
 	font-family: var(--wp--preset--font-family--serif);
-	font-size: 17px;
+	font-size: 18px;
 	color: var(--wp--preset--color--ink);
 	transition: color 0.18s ease;
 }
@@ -615,7 +661,7 @@ h2 + .soli-lead,
 .soli-fact-label {
 	margin: 0;
 	font-family: var(--wp--preset--font-family--sans);
-	font-size: 11px;
+	font-size: 12px;
 	font-weight: 500;
 	text-transform: uppercase;
 	letter-spacing: var(--wp--custom--letter-spacing--label);
@@ -778,15 +824,41 @@ h2 + .soli-lead,
 	margin: 0;
 }
 
+/* Query-driven feature card: stretch the card to the full column height so it
+   matches the mini-card stack beside it; the photo absorbs the difference. */
+.soli-mp-feature-query,
+.soli-mp-feature-query .wp-block-post-template,
+.soli-mp-feature-query .wp-block-post-template > li,
+.soli-mp-feature-query .soli-mp-feature {
+	height: 100%;
+}
+
+.soli-mp-feature-query .soli-mp-feature {
+	display: flex;
+	flex-direction: column;
+}
+
+.soli-mp-feature-query .soli-mp-feature-media {
+	flex: 1 1 auto;
+	min-height: 0;
+}
+
+.soli-mp-feature-query .soli-mp-feature-media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
 .soli-mp-feature .soli-mp-feature-media img {
 	display: block;
 	width: 100%;
 	border-radius: 0;
 }
 
-/* Small cards with a gold accent (mededelingen / nieuws side column). */
+/* Small cards in the mededelingen / nieuws side column: the hairline card
+   border carries them; no extra accent. */
 .is-style-soli-card.soli-mp-mini {
-	border-left: 3px solid var(--wp--preset--color--gold);
+	border: 1px solid var(--wp--preset--color--line);
 }
 
 /* Static "Lees meer →" link (placeholder cards). */
@@ -945,16 +1017,15 @@ a.soli-more-button:hover::after {
 }
 
 .soli-masonry.is-loading-more a.soli-more-button::after {
-	animation: soli-more-bounce 0.6s ease-in-out infinite;
+	animation: soli-more-pulse 0.9s cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
 }
 
-@keyframes soli-more-bounce {
-	0%,
-	100% {
-		transform: translateY(-2px) rotate(45deg);
+@keyframes soli-more-pulse {
+	from {
+		opacity: 1;
 	}
-	50% {
-		transform: translateY(2px) rotate(45deg);
+	to {
+		opacity: 0.35;
 	}
 }
 
@@ -964,14 +1035,23 @@ a.soli-more-button:hover::after {
 	}
 }
 
-/* Soli quote — gold left rule with an italic display pull-quote (core/quote
-   variation is-style-soli-quote). Matches the mockup blockquote. */
+/* Soli quote — editorial pull-quote (core/quote variation is-style-soli-quote):
+   an oversized gold quotation mark opens the italic display text. */
 .wp-block-quote.is-style-soli-quote {
 	margin-block: 3rem;
-	padding: 0 0 0 1.75rem;
+	padding: 0;
 	border: 0;
-	border-left: 4px solid var(--wp--preset--color--gold);
 	font-style: normal;
+}
+
+.wp-block-quote.is-style-soli-quote::before {
+	content: "\201C";
+	display: block;
+	height: 0.52em;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 2.6em;
+	line-height: 1;
+	color: var(--wp--preset--color--gold);
 }
 
 .wp-block-quote.is-style-soli-quote p {
@@ -991,6 +1071,29 @@ a.soli-more-button:hover::after {
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
 	color: var(--wp--preset--color--muted);
+}
+
+/* Every button (filled and outline) animates its colors the same way; the
+   filled theme.json buttons had no transition at all, which read as abrupt. */
+.wp-block-button__link {
+	transition: background-color 0.18s ease, color 0.18s ease,
+		border-color 0.18s ease;
+}
+
+/* Outline-maroon button (block style, functions.php) — style_data gives the
+   resting transparent/maroon look; the hover fill lives here. Target the stable
+   base class, NOT the per-instance is-style-outline-maroon--N class WordPress
+   auto-generates (its number varies per page). The base-class selector
+   (0,3,0 with :hover) also outweighs both the generated style_data rule and the
+   theme.json button :hover, which are ~(0,1,0). */
+.is-style-outline-maroon .wp-block-button__link {
+	transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.is-style-outline-maroon .wp-block-button__link:hover,
+.is-style-outline-maroon .wp-block-button__link:focus-visible {
+	background-color: var(--wp--preset--color--maroon);
+	color: var(--wp--preset--color--cream);
 }
 
 /* Kruimelpad (breadcrumb) — small uppercase links above the post title. */
@@ -1061,7 +1164,7 @@ a.soli-more-button:hover::after {
 	gap: 1.5rem;
 }
 
-@media (min-width: 782px) {
+@container soli (min-width: 782px) {
 	.soli-post-aside__inner {
 		position: sticky;
 		top: 4rem;
@@ -1073,4 +1176,431 @@ a.soli-more-button:hover::after {
 	font-size: 20px;
 	line-height: 1.15;
 	color: var(--wp--preset--color--ink);
+}
+
+/* ---------------------------------------------------------------------------
+   Fotoverslag & Aankondiging post templates (single-fotoverslag.html /
+   single-aankondiging.html) — shared back link, then each template's own
+   head treatment and content pieces (mockup post designs "fotoverslag" and
+   "affiche"). */
+
+.soli-post-back {
+	margin: 0 0 1.6rem;
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.28em;
+}
+
+.soli-post-back a {
+	color: var(--wp--preset--color--maroon);
+	text-decoration: none;
+}
+
+.soli-post-back a:hover {
+	color: var(--wp--preset--color--maroon-dark);
+}
+
+/* Fotoverslag kicker: "Fotoverslag · 16 april 2026" in gold uppercase.
+   The date comes from the post-date block; the dot is added in CSS so the
+   two blocks can stay independently editable. */
+.soli-post-kicker-row {
+	margin: 0 0 0.7rem;
+}
+
+.soli-post-kicker-row > * {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.28em;
+	color: var(--wp--preset--color--gold);
+}
+
+.soli-post-kicker-row .wp-block-post-date::before {
+	content: "· ";
+}
+
+.soli-post-title--narrow {
+	max-width: 20ch;
+}
+
+/* Prose with a display drop cap on the first paragraph (mockup fotoverslag). */
+.soli-post-prose {
+	max-width: 60ch;
+}
+
+.soli-post-prose > p:first-child::first-letter {
+	float: left;
+	padding: 0.12em 0.12em 0 0;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 3.6em;
+	line-height: 0.8;
+	color: var(--wp--preset--color--maroon);
+}
+
+/* Setlist note — paper card opened by a gold music note before the label. */
+.soli-post-setlist {
+	max-width: 60ch;
+	margin: 2rem 0 0;
+	padding: 1rem 1.4rem;
+	background: var(--wp--preset--color--paper);
+	border-radius: var(--wp--custom--card-radius);
+}
+
+.soli-post-setlist__label {
+	margin: 0 0 0.3rem;
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	color: var(--wp--preset--color--muted);
+}
+
+.soli-post-setlist__label::before {
+	content: "";
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	margin-right: 0.5em;
+	vertical-align: -2px;
+	background-color: var(--wp--preset--color--gold);
+	-webkit-mask: url("../images/icons/music.svg") center / contain no-repeat;
+	mask: url("../images/icons/music.svg") center / contain no-repeat;
+}
+
+.soli-post-setlist__items {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--display);
+	font-style: italic;
+	font-size: 20px;
+	color: var(--wp--preset--color--ink);
+}
+
+/* Photo essay grid: wide shots span both columns. */
+.soli-post-gallery {
+	display: grid;
+	gap: 1.8rem;
+	margin: 3.5rem 0 0;
+}
+
+.soli-post-gallery__item {
+	margin: 0;
+}
+
+.soli-post-gallery__item img {
+	display: block;
+	width: 100%;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
+	border-radius: var(--wp--custom--card-radius);
+	border: 1px solid var(--wp--preset--color--line);
+}
+
+@container soli (min-width: 768px) {
+	.soli-post-gallery {
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem;
+	}
+
+	.soli-post-gallery__item.is-wide {
+		grid-column: span 2;
+	}
+
+	.soli-post-gallery__item.is-wide img {
+		aspect-ratio: 21 / 9;
+	}
+}
+
+/* Cross-link card to the related orchestra/group page — a single paragraph
+   whose link wraps three stacked spans, so the whole card is one click target. */
+.soli-post-next {
+	margin: 3.5rem 0 4.5rem;
+}
+
+.soli-post-next a {
+	display: block;
+	max-width: 640px;
+	padding: 1.8rem 2rem;
+	background: var(--wp--preset--color--white);
+	border: 1px solid var(--wp--preset--color--line);
+	border-radius: var(--wp--custom--card-radius);
+	text-decoration: none;
+	transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.soli-post-next a:hover {
+	box-shadow: var(--wp--custom--shadow--card);
+}
+
+.soli-post-next__kicker {
+	display: block;
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	color: var(--wp--preset--color--muted);
+}
+
+.soli-post-next__title {
+	display: block;
+	margin-top: 0.5rem;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 22px;
+	line-height: 1.2;
+	color: var(--wp--preset--color--ink);
+}
+
+.soli-post-next__cta {
+	display: block;
+	margin-top: 0.8rem;
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 13px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--wp--preset--color--maroon);
+}
+
+/* Aankondiging head — sand band, centred pill + title + lede. */
+.soli-post-head--poster {
+	text-align: center;
+}
+
+.soli-post-pill {
+	display: inline-flex;
+	margin: 0 auto 1.2rem;
+	padding: 0.4rem 1rem;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.6);
+	border: 1px solid var(--wp--preset--color--maroon);
+}
+
+.soli-post-pill > * {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+	color: var(--wp--preset--color--maroon);
+}
+
+.soli-post-pill .wp-block-post-date::before {
+	content: "· ";
+}
+
+.soli-post-title--poster {
+	max-width: 16ch;
+	margin-inline: auto;
+	font-size: clamp(44px, 7vw, 92px);
+	line-height: 1;
+}
+
+/* Italicise part of the title (select text → Cmd/Ctrl+I in the title field)
+   to get the mockup's maroon second line for free. */
+.soli-post-title--poster em {
+	display: block;
+	font-style: italic;
+	color: var(--wp--preset--color--maroon);
+}
+
+.soli-post-lede.wp-block-post-excerpt {
+	max-width: 56ch;
+	margin: 1.4rem auto 0;
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: 18px;
+	line-height: 1.65;
+	color: var(--wp--preset--color--ink);
+}
+
+/* Ticket strip (soli/post-event-ticket pattern) — overlaps the sand head
+   like an admission ticket. Relies on being the first block in post-content. */
+.soli-ticket-strip {
+	position: relative;
+	max-width: 880px;
+	margin-inline: auto;
+	padding: 1.6rem 2rem;
+	background: var(--wp--preset--color--white);
+	border: 1px solid var(--wp--preset--color--line);
+	border-radius: var(--wp--custom--card-radius);
+	box-shadow: var(--wp--custom--shadow--card);
+}
+
+/* Pull the ticket up over the sand head. It is the first child of the flow
+   post-content, where WordPress zeroes margin-block-start via a :root-prefixed
+   rule (specificity 0,2,0). This parent + :first-child selector (0,3,0) wins,
+   and uses the same logical property so the two resolve against each other. */
+.soli-post-content--announcement > .soli-ticket-strip:first-child {
+	margin-block-start: -4.5rem;
+}
+
+.soli-ticket-strip .soli-fact-value {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 22px;
+	line-height: 1.2;
+}
+
+.soli-fact-note {
+	margin: 0.25rem 0 0;
+	font-size: 13px;
+	color: var(--wp--preset--color--muted);
+}
+
+@container soli (min-width: 768px) {
+	.soli-ticket-strip > .soli-fact {
+		padding-right: 2rem;
+	}
+
+	.soli-ticket-strip > .soli-fact + .soli-fact {
+		border-left: 2px dashed var(--wp--preset--color--sand);
+		padding-left: 2rem;
+	}
+}
+
+/* Two-column programme cards (soli/post-program-columns pattern). */
+.soli-program-columns {
+	margin-top: 3.5rem;
+}
+
+.soli-program-card {
+	height: 100%;
+	padding: 2rem 2.2rem;
+	background: var(--wp--preset--color--white);
+	border: 1px solid var(--wp--preset--color--line);
+	border-radius: var(--wp--custom--card-radius);
+}
+
+.soli-program-card h2 {
+	margin: 0 0 1.2rem;
+	padding-bottom: 0.9rem;
+	border-bottom: 2px solid var(--wp--preset--color--gold);
+	font-size: 26px;
+	color: var(--wp--preset--color--maroon);
+}
+
+.soli-program-rows__item {
+	display: grid;
+	grid-template-columns: 110px 1fr;
+	gap: 1rem;
+	align-items: baseline;
+	margin: 0;
+	padding: 0.65rem 0;
+	font-size: 15.5px;
+	line-height: 1.55;
+	color: var(--wp--preset--color--ink);
+}
+
+.soli-program-rows__item + .soli-program-rows__item {
+	border-top: 1px solid var(--wp--preset--color--line);
+}
+
+.soli-program-rows__item strong {
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--wp--preset--color--maroon);
+}
+
+.soli-program-note {
+	margin: 1.4rem 0 0;
+	padding: 1rem 1.2rem;
+	border-radius: 8px;
+	background: var(--wp--preset--color--paper);
+	font-size: 14px;
+	line-height: 1.6;
+	color: var(--wp--preset--color--ink);
+}
+
+/* About/CTA media-text block (soli/post-about-cta pattern). */
+.soli-about-block img {
+	border-radius: var(--wp--custom--card-radius);
+	border: 1px solid var(--wp--preset--color--line);
+}
+
+/* ---------------------------------------------------------------------------
+   Inline icon glyphs — SVGs shared with wp-soli-event-plugin
+   (assets/images/icons/), rendered as CSS masks so they take currentColor.
+   Add .soli-ic plus one modifier to any inline element; the glyph draws
+   before the text. */
+.soli-ic::before {
+	content: "";
+	display: inline-block;
+	width: 1.05em;
+	height: 1.05em;
+	margin-right: 0.45em;
+	vertical-align: -0.15em;
+	background-color: currentColor;
+	-webkit-mask: var(--soli-ic) center / contain no-repeat;
+	mask: var(--soli-ic) center / contain no-repeat;
+}
+
+.soli-ic-cal {
+	--soli-ic: url("../images/icons/calendar.svg");
+}
+
+.soli-ic-file {
+	--soli-ic: url("../images/icons/document.svg");
+}
+
+.soli-ic-link {
+	--soli-ic: url("../images/icons/link.svg");
+}
+
+.soli-ic-music {
+	--soli-ic: url("../images/icons/music.svg");
+}
+
+/* Vereniging — "waarom lid worden" reason rows: gold music-note glyph in the
+   left rail, heading + body in the right column. */
+.soli-reason {
+	display: grid;
+	grid-template-columns: 36px 1fr;
+}
+
+.soli-reason::before {
+	content: "";
+	grid-column: 1;
+	width: 22px;
+	height: 22px;
+	margin-top: 0.15em;
+	background-color: var(--wp--preset--color--gold);
+	-webkit-mask: url("../images/icons/music.svg") center / contain no-repeat;
+	mask: url("../images/icons/music.svg") center / contain no-repeat;
+}
+
+.soli-reason > * {
+	grid-column: 2;
+}
+
+/* Core table, themed (e.g. the contributietabel on Lidmaatschap): hairline
+   rules from the palette, paper header row, tabular numerals. */
+.wp-block-table table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid var(--wp--preset--color--line);
+}
+
+.wp-block-table th,
+.wp-block-table td {
+	padding: 0.65rem 0.9rem;
+	border: 1px solid var(--wp--preset--color--line);
+	text-align: left;
+}
+
+.wp-block-table thead th {
+	background: var(--wp--preset--color--paper);
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 12.5px;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--maroon);
+}
+
+.wp-block-table td {
+	font-variant-numeric: tabular-nums;
 }

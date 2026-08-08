@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "soli/post-search",
+	"version": "0.1.0",
+	"title": "Zoekveld (Query Loop)",
+	"category": "theme",
+	"icon": "search",
+	"description": "Zoekveld dat een Query Loop op dezelfde pagina filtert. Het zoekwoord komt in de URL, zodat het resultaat deelbaar is en zonder JavaScript werkt.",
+	"keywords": [ "zoeken", "search", "filter", "query" ],
+	"textdomain": "soli-gutenberg-theme",
+	"attributes": {
+		"paramName": {
+			"type": "string",
+			"default": "q"
+		},
+		"postType": {
+			"type": "string",
+			"default": ""
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		},
+		"showLabel": {
+			"type": "boolean",
+			"default": false
+		},
+		"placeholder": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonText": {
+			"type": "string",
+			"default": ""
+		},
+		"showReset": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"showLabel": true,
+			"label": "Zoeken in mededelingen"
+		}
+	},
+	"supports": {
+		"html": false,
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"typography": {
+			"fontSize": true
+		},
+		"spacing": {
+			"margin": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

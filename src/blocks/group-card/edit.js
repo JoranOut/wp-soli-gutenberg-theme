@@ -92,7 +92,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 				/>
 				<TextControl
 					label={ __( 'Repetitiemoment', 'soli-gutenberg-theme' ) }
-					help={ __( 'Bijvoorbeeld: “ma · 20:00 – 22:00”.', 'soli-gutenberg-theme' ) }
+					help={ __( 'Bijvoorbeeld: “ma · 20:00-22:00”.', 'soli-gutenberg-theme' ) }
 					value={ rehearsal }
 					onChange={ ( value ) => setAttributes( { rehearsal: value } ) }
 				/>
@@ -141,7 +141,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 					<span className="soli-tile-cap">
 						<span className="soli-tile-name">{ name }</span>
 						{ rehearsal && (
-							<span className="soli-tile-meet">🗓️ { rehearsal }</span>
+							<span className="soli-tile-meet soli-ic soli-ic-cal">{ rehearsal }</span>
 						) }
 					</span>
 				</span>
@@ -155,7 +155,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 			<span className="soli-og-card-img" style={ imageStyle } role="img" aria-label={ name }></span>
 			<span className="soli-og-card-body">
 				{ rehearsal && (
-					<span className="soli-og-card-meta">🗓️ { rehearsal }</span>
+					<span className="soli-og-card-meta soli-ic soli-ic-cal">{ rehearsal }</span>
 				) }
 				<span className="soli-og-card-name">{ name }</span>
 				{ tagline && <span className="soli-og-card-tag">{ tagline }</span> }

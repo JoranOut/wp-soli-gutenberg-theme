@@ -39,7 +39,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							allowedFormats={ [] }
 							value={ item }
 							onChange={ ( value ) => updateItem( index, value ) }
-							placeholder={ __( 'Titel — componist', 'soli-gutenberg-theme' ) }
+							placeholder={ __( 'Titel, componist', 'soli-gutenberg-theme' ) }
 						/>
 						<Button
 							className="soli-program-list__remove"

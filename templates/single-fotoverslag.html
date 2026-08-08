@@ -1,0 +1,39 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"1100px"}} -->
+<main class="wp-block-group">
+	<!-- wp:group {"align":"full","layout":{"type":"constrained","contentSize":"1100px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"0"},"blockGap":"var:preset|spacing|20"}}} -->
+	<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:0">
+		<!-- wp:paragraph {"className":"soli-post-back"} -->
+		<p class="soli-post-back"><a href="/nieuws/">← Nieuws</a></p>
+		<!-- /wp:paragraph -->
+
+		<!-- wp:group {"className":"soli-post-kicker-row","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"0.4em"}}} -->
+		<div class="wp-block-group soli-post-kicker-row">
+			<!-- wp:paragraph -->
+			<p>Fotoverslag</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:post-date /-->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:post-title {"level":1,"className":"soli-post-title soli-post-title--narrow"} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:group {"align":"full","layout":{"type":"constrained","contentSize":"1100px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"}}}} -->
+	<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--60)">
+		<!-- wp:post-content {"className":"soli-post-content--photo-report","layout":{"type":"default"}} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:group {"tagName":"section","align":"full","backgroundColor":"paper","layout":{"type":"constrained","contentSize":"1100px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}},"border":{"top":{"color":"var:preset|color|line","width":"1px","style":"solid"}}}} -->
+	<section class="wp-block-group alignfull has-paper-background-color has-background" style="border-top-color:var(--wp--preset--color--line);border-top-style:solid;border-top-width:1px;padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
+		<!-- wp:soli/post-nav /-->
+	</section>
+	<!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

@@ -22,13 +22,32 @@ parts/              header.html / footer.html → thin wrappers around
 patterns/           section patterns + page starter patterns (Post Types: page)
 src/blocks/         group-card, group-slider (build: npm run build:blocks)
 assets/             fonts (woff2), css/soli.css (signature CSS), images (logos + demo)
-bin/setup.sh        wp-env afterStart: activates theme, seeds pages/posts/images
+includes/           content manifest + site initializer + wp-admin setup screen + WP-CLI
+bin/setup.sh        wp-env afterStart: activates theme, then calls wp soli init-pages/seed-demo
 ```
+
+### Site initialization
+
+The whole site structure is declared once in `includes/class-content-manifest.php`
+(21 pages + 17 group pages + home, plus the demo news archive). `Site_Initializer`
+applies it, and three entry points share that one path so they cannot drift:
+
+- **wp-admin** — *Weergave → Soli setup*. Two actions: **Paginastructuur** (pages,
+  hierarchy, templates, front/posts page — safe on real sites) and **Demo-inhoud**
+  (mockup news + demo photos, deletes *Hallo wereld!* — local only).
+- **WP-CLI** — `wp soli init-pages`, `wp soli seed-demo`. Works over SSH on Antagonist.
+- **bin/setup.sh** — wp-env afterStart, now just a thin wrapper around those commands.
+
+Everything is idempotent, matched by slug: re-running fills gaps and never
+overwrites edited content. Ordering is load-bearing — a parent page must be
+created before its children, and every group page before `home`, because the
+home slider bakes literal `pageId` values into `soli/group-card`.
 
 ### Custom blocks
 
 - **`soli/group-card`** — dynamic (`render.php`). Attributes `pageId`, `rehearsal`, `showArrow`. Renders the selected page's featured image, title, excerpt and a rehearsal pill. Two faces: overview card, or slider tile when inside the slider (context `soli/displayMode = tile`).
 - **`soli/group-slider`** — dynamic parent (InnerBlocks restricted to `soli/group-card`, provides `soli/displayMode = tile`). Interactivity API `view.js` (autoplay, swipe, chips, shutter transition). Fewer than 2 valid cards → renders a static row.
+- **`soli/post-search`** — dynamic (`render.php`), a plain GET form that filters a **core Query Loop** on the same page. It holds no query logic: it writes `?q=term` (plus `?q_type=post_type` when scoped) and `soli_gutenberg_theme_query_loop_search()` in `functions.php` injects that into the loop via `query_loop_block_query_vars`. Requires the loop to be set to *not* inherit; inherited loops render from the main query and never reach the filter. See the gotcha below.
 
 Blocks are registered in `functions.php` via `wp_register_block_types_from_metadata_collection( build/blocks, build/blocks-manifest.php )`. Build with `npm run build:blocks` (uses `--blocks-manifest --experimental-modules`; the modules flag is required for `viewScriptModule`).
 
@@ -55,6 +74,9 @@ npm run test:e2e      # Playwright against the tests env (:8889)
 - The blocks manifest keys are relative to `build/blocks`, so registration passes `build/blocks` (not `build`) as the collection path.
 - Pattern PHP escapes everything; block markup in patterns must keep serialized HTML in sync with the block comment attributes.
 - `soli/group-card` inside a pattern with `pageId: 0` renders nothing on the front end (editor shows a page picker placeholder) — starter patterns rely on the editor choosing pages.
+- Group pages are children of *orkesten-en-groepen*, so `get_page_by_path( 'bigband' )` returns null — it matches the full hierarchical path. Look pages up by slug (`get_posts` with `name`) instead; `Site_Initializer::find_by_slug()` exists for this.
+- Query Loop search scoping has to travel in the URL: `core/query` declares `namespace` as an attribute but does **not** list it in `providesContext` (checked against WP 7.0), so PHP filters cannot tell two loops apart by anything except `queryId` or `postType`. Hence the `q_type` param on `soli/post-search`.
+- `build_query_vars_from_query_block()` always writes an explicit `orderby` (default `date`), so a search term alone does not give relevance ranking — the filter sets `orderby => relevance` too. WP's relevance is a crude title/content `LIKE` score; real ranking needs `posts_search`/`posts_orderby` or a plugin.
 
 ## Versioning
 

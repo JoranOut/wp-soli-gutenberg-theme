@@ -15,16 +15,12 @@
 	<div class="wp-block-group alignwide">
 		<!-- wp:group {"layout":{"type":"constrained","contentSize":"720px","justifyContent":"left"},"style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
 		<div class="wp-block-group">
-			<!-- wp:paragraph {"className":"soli-eyebrow"} -->
-			<p class="soli-eyebrow"><?php esc_html_e( 'Een vereniging voor iedereen', 'soli-gutenberg-theme' ); ?></p>
-			<!-- /wp:paragraph -->
-
 			<!-- wp:heading -->
 			<h2 class="wp-block-heading">Van harmonie tot bigband, van opstapklas tot TwirlTeam.</h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"className":"soli-lead"} -->
-			<p class="soli-lead">Bij Soli vindt iedereen een plek — van je allereerste noten in de opleiding tot spelen in een van onze eindorkesten.</p>
+			<p class="soli-lead">Bij Soli vindt iedereen een plek, van je allereerste noten in de opleiding tot spelen in een van onze eindorkesten.</p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
