@@ -15,10 +15,6 @@
 	<div class="wp-block-group alignwide">
 		<!-- wp:group {"layout":{"type":"default"},"style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
 		<div class="wp-block-group">
-			<!-- wp:paragraph {"className":"soli-eyebrow"} -->
-			<p class="soli-eyebrow"><?php esc_html_e( 'Laatste nieuws', 'soli-gutenberg-theme' ); ?></p>
-			<!-- /wp:paragraph -->
-
 			<!-- wp:heading -->
 			<h2 class="wp-block-heading">Vers van de repetitie en het podium.</h2>
 			<!-- /wp:heading -->
@@ -35,54 +31,55 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:columns {"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|50"},"blockGap":{"left":"var:preset|spacing|40"}}}} -->
-	<div class="wp-block-columns alignwide" style="margin-top:var(--wp--preset--spacing--50)">
-		<!-- wp:column {"width":"66%"} -->
-		<div class="wp-block-column" style="flex-basis:66%">
-			<!-- wp:query {"query":{"perPage":1,"postType":"post","order":"desc","orderBy":"date","inherit":false}} -->
-			<div class="wp-block-query">
-				<!-- wp:post-template -->
-					<!-- wp:group {"className":"is-style-soli-card soli-news-feature","style":{"spacing":{"blockGap":"0","padding":{"top":"0","right":"0","bottom":"0","left":"0"}}},"layout":{"type":"default"}} -->
-					<div class="wp-block-group is-style-soli-card soli-news-feature" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">
-						<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9"} /-->
+	<!-- wp:query {"query":{"perPage":1,"postType":"post","order":"desc","orderBy":"date","inherit":false},"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}}} -->
+	<div class="wp-block-query alignwide" style="margin-top:var(--wp--preset--spacing--50)">
+		<!-- wp:post-template -->
+			<!-- wp:group {"className":"is-style-soli-card soli-news-feature","style":{"spacing":{"blockGap":"0","padding":{"top":"0","right":"0","bottom":"0","left":"0"}}},"layout":{"type":"default"}} -->
+			<div class="wp-block-group is-style-soli-card soli-news-feature" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">
+				<!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"left":"0"}}}} -->
+				<div class="wp-block-columns are-vertically-aligned-center">
+					<!-- wp:column {"verticalAlignment":"center","width":"56%"} -->
+					<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:56%">
+						<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/10"} /-->
+					</div>
+					<!-- /wp:column -->
 
+					<!-- wp:column {"verticalAlignment":"center"} -->
+					<div class="wp-block-column is-vertically-aligned-center">
 						<!-- wp:group {"layout":{"type":"default"},"style":{"spacing":{"blockGap":"var:preset|spacing|20","padding":{"top":"var:preset|spacing|40","right":"var:preset|spacing|40","bottom":"var:preset|spacing|40","left":"var:preset|spacing|40"}}}} -->
 						<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--40);padding-right:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--40)">
 							<!-- wp:post-date {"format":"j F Y"} /-->
-							<!-- wp:post-title {"isLink":true,"level":3,"style":{"typography":{"fontSize":"26px"}}} /-->
-							<!-- wp:post-excerpt {"moreText":"Lees meer →","excerptLength":28} /-->
+							<!-- wp:post-title {"isLink":true,"level":3,"style":{"typography":{"fontSize":"32px"}}} /-->
+							<!-- wp:post-excerpt {"moreText":"Lees meer →","excerptLength":34} /-->
 						</div>
 						<!-- /wp:group -->
 					</div>
-					<!-- /wp:group -->
-				<!-- /wp:post-template -->
-
-				<!-- wp:query-no-results -->
-					<!-- wp:pattern {"slug":"soli-gutenberg-theme/hidden-no-results"} /-->
-				<!-- /wp:query-no-results -->
+					<!-- /wp:column -->
+				</div>
+				<!-- /wp:columns -->
 			</div>
-			<!-- /wp:query -->
-		</div>
-		<!-- /wp:column -->
+			<!-- /wp:group -->
+		<!-- /wp:post-template -->
 
-		<!-- wp:column -->
-		<div class="wp-block-column">
-			<!-- wp:query {"query":{"perPage":3,"offset":1,"postType":"post","order":"desc","orderBy":"date","inherit":false}} -->
-			<div class="wp-block-query">
-				<!-- wp:post-template {"layout":{"type":"default"}} -->
-					<!-- wp:group {"className":"is-style-soli-card soli-news-small","style":{"spacing":{"blockGap":"0.4rem"}},"layout":{"type":"default"}} -->
-					<div class="wp-block-group is-style-soli-card soli-news-small">
-						<!-- wp:post-date {"format":"j F Y"} /-->
-						<!-- wp:post-title {"isLink":true,"level":3,"style":{"typography":{"fontSize":"19px"}}} /-->
-						<!-- wp:post-excerpt {"moreText":"Lees meer →","excerptLength":16,"fontSize":"small"} /-->
-					</div>
-					<!-- /wp:group -->
-				<!-- /wp:post-template -->
-			</div>
-			<!-- /wp:query -->
-		</div>
-		<!-- /wp:column -->
+		<!-- wp:query-no-results -->
+			<!-- wp:pattern {"slug":"soli-gutenberg-theme/hidden-no-results"} /-->
+		<!-- /wp:query-no-results -->
 	</div>
-	<!-- /wp:columns -->
+	<!-- /wp:query -->
+
+	<!-- wp:query {"query":{"perPage":3,"offset":1,"postType":"post","order":"desc","orderBy":"date","inherit":false},"align":"wide","className":"soli-news-grid","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
+	<div class="wp-block-query alignwide soli-news-grid" style="margin-top:var(--wp--preset--spacing--40)">
+		<!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
+			<!-- wp:group {"className":"is-style-soli-card","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
+			<div class="wp-block-group is-style-soli-card">
+				<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/10","style":{"border":{"radius":"var:custom|card-radius"}}} /-->
+				<!-- wp:post-date {"format":"j F Y"} /-->
+				<!-- wp:post-title {"isLink":true,"level":3,"fontSize":"x-large"} /-->
+				<!-- wp:post-excerpt {"moreText":"Lees meer →","excerptLength":25,"fontSize":"small"} /-->
+			</div>
+			<!-- /wp:group -->
+		<!-- /wp:post-template -->
+	</div>
+	<!-- /wp:query -->
 </section>
 <!-- /wp:group -->
