@@ -15,6 +15,17 @@ defined( 'ABSPATH' ) || exit;
  */
 define( 'SOLI_GUTENBERG_THEME__VERSION', '0.1.0' );
 
+require_once get_template_directory() . '/includes/class-content-manifest.php';
+require_once get_template_directory() . '/includes/class-site-initializer.php';
+require_once get_template_directory() . '/includes/class-setup-screen.php';
+
+\Soli\GutenbergTheme\Setup_Screen::register();
+
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	require_once get_template_directory() . '/includes/class-cli.php';
+	\Soli\GutenbergTheme\CLI::register();
+}
+
 /**
  * Theme setup.
  *
