@@ -54,8 +54,14 @@ Legend: ✅ covered · ⛔ not e2e-suitable
 - `queries.spec.js` — feature, category archive, search (NEW)
 - `editor.spec.js` — paper canvas, 736px width (both post-scoped), block styles (NEW)
 - `interactions.spec.js` — soli-notes click burst (NEW)
+- `php-errors.spec.js` — every front-end route (front page, posts page, single, search, 404) resolves its template + header/footer parts and renders with no PHP warning/notice/deprecation, plus a guard asserting `WP_DEBUG` is really on in the tests env (NEW)
 
 ## Notes / decisions
+
+- The debug constants live in `.wp-env.json` **twice** (top-level `config` and
+  `env.tests.config`). wp-env forces `WP_DEBUG`/`SCRIPT_DEBUG` to false in the
+  tests environment and ignores the top-level block there, so without the
+  duplicate the PHP-diagnostic assertions pass over real warnings. See CLAUDE.md.
 
 - Tests target the **tests** env on port 8891 (this project's `.wp-env.override.json`);
   8889 hosts a different project locally, so `WP_BASE_URL` must be set when running by hand.
