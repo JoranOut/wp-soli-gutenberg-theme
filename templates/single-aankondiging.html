@@ -1,0 +1,41 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"1100px"}} -->
+<main class="wp-block-group">
+	<!-- wp:group {"align":"full","backgroundColor":"sand","className":"soli-post-head--poster","layout":{"type":"constrained","contentSize":"1100px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|70"},"blockGap":"var:preset|spacing|20"},"border":{"bottom":{"color":"var:preset|color|line","width":"1px","style":"solid"}}}} -->
+	<div class="wp-block-group alignfull has-sand-background-color has-background soli-post-head--poster" style="border-bottom-color:var(--wp--preset--color--line);border-bottom-style:solid;border-bottom-width:1px;padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--70)">
+		<!-- wp:paragraph {"className":"soli-post-back","align":"center"} -->
+		<p class="soli-post-back has-text-align-center"><a href="/nieuws/">← Nieuws</a></p>
+		<!-- /wp:paragraph -->
+
+		<!-- wp:group {"className":"soli-post-pill","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center","justifyContent":"center"},"style":{"spacing":{"blockGap":"0.4em"}}} -->
+		<div class="wp-block-group soli-post-pill">
+			<!-- wp:paragraph -->
+			<p>Aankondiging</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:post-date /-->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:post-title {"level":1,"textAlign":"center","className":"soli-post-title soli-post-title--poster"} /-->
+
+		<!-- wp:post-excerpt {"textAlign":"center","excerptLength":40,"className":"soli-post-lede"} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:group {"align":"full","layout":{"type":"constrained","contentSize":"1100px"},"style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|60"}}}} -->
+	<div class="wp-block-group alignfull" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--60)">
+		<!-- wp:post-content {"className":"soli-post-content--announcement","layout":{"type":"default"}} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:group {"tagName":"section","align":"full","backgroundColor":"paper","layout":{"type":"constrained","contentSize":"1100px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}},"border":{"top":{"color":"var:preset|color|line","width":"1px","style":"solid"}}}} -->
+	<section class="wp-block-group alignfull has-paper-background-color has-background" style="border-top-color:var(--wp--preset--color--line);border-top-style:solid;border-top-width:1px;padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
+		<!-- wp:soli/post-nav /-->
+	</section>
+	<!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

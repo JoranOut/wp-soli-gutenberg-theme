@@ -326,6 +326,16 @@
 			"name": "page-canvas",
 			"title": "Paginacanvas (zonder titel)",
 			"postTypes": [ "page" ]
+		},
+		{
+			"name": "single-fotoverslag",
+			"title": "Fotoverslag",
+			"postTypes": [ "post" ]
+		},
+		{
+			"name": "single-aankondiging",
+			"title": "Aankondiging",
+			"postTypes": [ "post" ]
 		}
 	]
 }
