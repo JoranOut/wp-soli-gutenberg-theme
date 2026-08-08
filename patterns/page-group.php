@@ -15,8 +15,8 @@
 <div class="wp-block-columns alignwide">
 	<!-- wp:column {"width":"62%"} -->
 	<div class="wp-block-column" style="flex-basis:62%">
-		<!-- wp:paragraph {"fontSize":"large"} -->
-		<p class="has-large-font-size">Deze groep is een van de ensembles van Soli en bestaat uit enthousiaste muzikanten uit de vereniging.</p>
+		<!-- wp:paragraph {"className":"soli-page-lede"} -->
+		<p class="soli-page-lede">Deze groep is een van de ensembles van Soli en bestaat uit enthousiaste muzikanten uit de vereniging.</p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:paragraph -->
@@ -24,7 +24,7 @@
 		<!-- /wp:paragraph -->
 
 		<!-- wp:paragraph -->
-		<p>De groep repeteert wekelijks — kom gerust eens langs bij een repetitie.</p>
+		<p>De groep repeteert wekelijks. Kom gerust eens langs bij een repetitie.</p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:group {"className":"is-style-soli-card","backgroundColor":"paper","layout":{"type":"default"}} -->
