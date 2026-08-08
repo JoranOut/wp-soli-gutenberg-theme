@@ -68,6 +68,7 @@ npm run test:e2e      # Playwright against the tests env (:8889)
 
 - `.wp-env.json` sets `WP_DEVELOPMENT_MODE=theme` — without it WordPress caches the theme's pattern-file list in a transient and new pattern files don't show up.
 - `playwright.config.js` uses the wp-scripts global setup + storage state so `@wordpress/e2e-test-utils-playwright` admin/editor fixtures work.
+- **The debug constants in `.wp-env.json` are deliberately declared twice** — once in the top-level `config` and again under `env.tests.config`. wp-env does not carry the top-level block into the *tests* environment; it forces `WP_DEBUG` and `SCRIPT_DEBUG` to false there. Since Playwright runs against the tests env, dropping `env.tests.config` lowers `error_reporting` below `E_WARNING` and every "no PHP errors" assertion in `php-errors.spec.js` silently passes over real warnings. Verify with `wp-env run tests-cli wp config get WP_DEBUG` (must print `1`); the last test in `php-errors.spec.js` guards it from inside the suite.
 
 ## Gotchas
 
