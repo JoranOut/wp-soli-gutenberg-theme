@@ -1,0 +1,67 @@
+/* soli/post-search — GET form that drives a Query Loop via the URL. */
+.wp-block-soli-post-search.soli-post-search {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	.soli-post-search__label {
+		font-size: 13px;
+		font-weight: 600;
+		letter-spacing: var(--wp--custom--letter-spacing--label, 0.16em);
+		text-transform: uppercase;
+		color: var(--wp--preset--color--muted, #5a5a5e);
+	}
+
+	.soli-post-search__field {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+	}
+
+	.soli-post-search__input {
+		flex: 1 1 12rem;
+		min-width: 0;
+		padding: 0.7rem 1rem;
+		font-family: inherit;
+		font-size: 16px; /* 16px keeps iOS Safari from zooming on focus. */
+		color: inherit;
+		background: var(--wp--preset--color--white, #fff);
+		border: 1px solid var(--wp--preset--color--line, #e6e2da);
+		border-radius: 8px;
+
+		&:focus-visible {
+			outline: 2px solid var(--wp--preset--color--maroon, #7a1f2b);
+			outline-offset: 1px;
+		}
+	}
+
+	.soli-post-search__button {
+		padding: 0.7rem 1.4rem;
+		font-family: inherit;
+		font-size: 14px;
+		font-weight: 600;
+		letter-spacing: var(--wp--custom--letter-spacing--button, 0.08em);
+		/* DESIGN.md: cream is the button text on maroon; maroon-dark is the hover. */
+		color: var(--wp--preset--color--cream, #faf6ee);
+		background: var(--wp--preset--color--maroon, #7a1f2b);
+		border: 1px solid var(--wp--preset--color--maroon, #7a1f2b);
+		border-radius: 8px;
+		cursor: pointer;
+
+		&:hover {
+			background: var(--wp--preset--color--maroon-dark, #5a1620);
+			border-color: var(--wp--preset--color--maroon-dark, #5a1620);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--wp--preset--color--ink, #1a1a2e);
+			outline-offset: 2px;
+		}
+	}
+
+	.soli-post-search__reset {
+		align-self: flex-start;
+		font-size: 13px;
+		color: var(--wp--preset--color--muted, #5a5a5e);
+	}
+}

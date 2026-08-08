@@ -86,6 +86,72 @@ function soli_gutenberg_theme_fix_query_offset( array $query, WP_Block $block, i
 add_filter( 'query_loop_block_query_vars', 'soli_gutenberg_theme_fix_query_offset', 10, 3 );
 
 /**
+ * Let the soli/post-search block filter a Query Loop from the URL.
+ *
+ * Core's Query Loop reads only `query-{queryId}-page` from the URL; filtering by
+ * a search term is still experimental in Gutenberg. This bridges the gap: the
+ * search block writes `?q=term` (plus an optional `?q_type=post_type` scope) and
+ * this filter injects it into the loop's WP_Query args.
+ *
+ * Scoping lives entirely in the URL rather than in a registry, because core/query
+ * declares `namespace` as an attribute but does not expose it via providesContext
+ * (verified against WP 7.0) — so PHP cannot otherwise tell two loops apart. With
+ * no scope param the term applies to every non-inherited loop on the page, which
+ * is the common single-loop case.
+ *
+ * Loops set to "inherit query from template" are left alone: those render from
+ * the main query and never reach this filter.
+ *
+ * @since 0.1.0
+ *
+ * @param array    $query The compiled WP_Query args.
+ * @param WP_Block $block The block instance.
+ * @param int      $page  The current page number.
+ * @return array The adjusted query args.
+ */
+function soli_gutenberg_theme_query_loop_search( array $query, WP_Block $block, int $page ): array {
+	/**
+	 * Search parameter names honoured by the Query Loop search bridge.
+	 *
+	 * Add a name here when a page carries more than one soli/post-search block.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string[] $params URL parameter names.
+	 */
+	$params = (array) apply_filters( 'soli_post_search_params', array( 'q' ) );
+
+	foreach ( $params as $param ) {
+		$param = sanitize_key( $param );
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Public, read-only search; no state is changed.
+		$term = isset( $_GET[ $param ] ) ? sanitize_text_field( wp_unslash( $_GET[ $param ] ) ) : '';
+
+		if ( '' === $term ) {
+			continue;
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- See above.
+		$scope = isset( $_GET[ $param . '_type' ] ) ? sanitize_key( wp_unslash( $_GET[ $param . '_type' ] ) ) : '';
+
+		if ( '' !== $scope && ! in_array( $scope, (array) ( $query['post_type'] ?? array() ), true ) ) {
+			continue;
+		}
+
+		$query['s'] = $term;
+
+		// build_query_vars_from_query_block() always writes an explicit orderby
+		// (default "date"), so relevance ranking has to be forced back on.
+		$query['orderby'] = 'relevance';
+
+		break;
+	}
+
+	return $query;
+}
+add_filter( 'query_loop_block_query_vars', 'soli_gutenberg_theme_query_loop_search', 10, 3 );
+
+/**
  * Enqueue theme styles.
  *
  * @since 0.1.0

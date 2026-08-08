@@ -1,0 +1,215 @@
+/* soli/email-cta — button that opens an example e-mail in a dialog. */
+.wp-block-soli-email-cta.soli-email-cta {
+	margin-block: 1.5rem;
+
+	.soli-email-cta__button {
+		display: inline-block;
+		padding: 0.7rem 1.4rem;
+		font-family: var(--wp--preset--font-family--sans, sans-serif);
+		font-size: 13px;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		color: var(--wp--preset--color--paper, #f5efe6);
+		background: var(--wp--preset--color--maroon, #7a1f2b);
+		border: 0;
+		border-radius: 8px;
+		cursor: pointer;
+		text-decoration: none;
+		transition: background-color 0.18s ease;
+
+		&:hover,
+		&:focus-visible {
+			background: var(--wp--preset--color--maroon-dark, #5a1620);
+		}
+	}
+
+	/* The editor preview toggle sits next to the (editable) button. */
+	.soli-email-cta__editor {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+}
+
+/* The dialog is portalled to the top layer, so it is styled outside the
+   block wrapper scope. */
+.soli-email-cta__dialog {
+	width: min(38rem, calc(100vw - 2rem));
+	padding: 0;
+	border: 1px solid var(--wp--preset--color--line, #e6e2da);
+	border-radius: 12px;
+	background: #fff;
+	color: var(--wp--preset--color--ink, #1a1a2e);
+	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+
+	&::backdrop {
+		background: rgba(26, 26, 46, 0.5);
+	}
+
+	.soli-email-cta__dialog-inner {
+		padding: 1.5rem;
+	}
+
+	.soli-email-cta__dialog-head {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.soli-email-cta__dialog-title {
+		margin: 0;
+		font-family: var(--wp--preset--font-family--display, serif);
+		font-size: 22px;
+		line-height: 1.2;
+	}
+
+	.soli-email-cta__close {
+		flex: none;
+		width: 2rem;
+		height: 2rem;
+		font-size: 1.5rem;
+		line-height: 1;
+		color: inherit;
+		background: transparent;
+		border: 0;
+		border-radius: 6px;
+		cursor: pointer;
+
+		&:hover,
+		&:focus-visible {
+			background: color-mix(in srgb, var(--wp--preset--color--ink, #1a1a2e) 8%, transparent);
+		}
+	}
+
+	.soli-email-cta__fields {
+		margin: 0 0 1rem;
+		border: 1px solid var(--wp--preset--color--line, #e6e2da);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+
+	.soli-email-cta__field {
+		display: grid;
+		grid-template-columns: 7rem 1fr;
+		gap: 0.5rem;
+		padding: 0.6rem 0.9rem;
+		font-size: 14px;
+
+		& + .soli-email-cta__field {
+			border-top: 1px solid var(--wp--preset--color--line, #e6e2da);
+		}
+
+		dt {
+			margin: 0;
+			font-weight: 600;
+			color: var(--wp--preset--color--maroon, #7a1f2b);
+		}
+
+		dd {
+			margin: 0;
+			word-break: break-word;
+		}
+	}
+
+	.soli-email-cta__body {
+		max-height: 40vh;
+		overflow-y: auto;
+		padding: 0.9rem;
+		font-size: 14px;
+		line-height: 1.6;
+		white-space: pre-wrap;
+		word-break: break-word;
+		background: color-mix(in srgb, var(--wp--preset--color--sand, #e8dcc6) 30%, transparent);
+		border-radius: 8px;
+	}
+
+	.soli-email-cta__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+	}
+
+	.soli-email-cta__copy,
+	.soli-email-cta__mailto {
+		padding: 0.6rem 1.2rem;
+		font-family: var(--wp--preset--font-family--sans, sans-serif);
+		font-size: 13px;
+		font-weight: 600;
+		border-radius: 8px;
+		cursor: pointer;
+		text-decoration: none;
+		border: 1px solid var(--wp--preset--color--maroon, #7a1f2b);
+	}
+
+	.soli-email-cta__copy {
+		color: var(--wp--preset--color--maroon, #7a1f2b);
+		background: transparent;
+
+		&:hover,
+		&:focus-visible {
+			background: color-mix(in srgb, var(--wp--preset--color--maroon, #7a1f2b) 10%, transparent);
+		}
+	}
+
+	.soli-email-cta__mailto {
+		color: var(--wp--preset--color--paper, #f5efe6);
+		background: var(--wp--preset--color--maroon, #7a1f2b);
+
+		&:hover,
+		&:focus-visible {
+			background: var(--wp--preset--color--maroon-dark, #5a1620);
+		}
+	}
+}
+
+/* Editor preview inside the WordPress Modal component. */
+.soli-email-cta__modal {
+	.soli-email-cta__fields {
+		margin: 0 0 1rem;
+		border: 1px solid var(--wp--preset--color--line, #e6e2da);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+
+	.soli-email-cta__field {
+		display: grid;
+		grid-template-columns: 7rem 1fr;
+		gap: 0.5rem;
+		padding: 0.6rem 0.9rem;
+		font-size: 14px;
+
+		& + .soli-email-cta__field {
+			border-top: 1px solid var(--wp--preset--color--line, #e6e2da);
+		}
+
+		dt {
+			margin: 0;
+			font-weight: 600;
+		}
+
+		dd {
+			margin: 0;
+			word-break: break-word;
+		}
+	}
+
+	.soli-email-cta__body {
+		padding: 0.9rem;
+		font-size: 14px;
+		line-height: 1.6;
+		white-space: pre-wrap;
+		word-break: break-word;
+		background: rgba(0, 0, 0, 0.03);
+		border-radius: 8px;
+	}
+
+	.soli-email-cta__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+	}
+}
