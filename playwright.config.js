@@ -35,7 +35,9 @@ module.exports = defineConfig( {
 	],
 	webServer: {
 		command: 'npm run env:start',
-		url: 'http://localhost:8888',
+		// Wait for the tests site itself, honoring WP_BASE_URL so local
+		// .wp-env.override.json port overrides work too.
+		url: process.env.WP_BASE_URL || 'http://localhost:8889',
 		reuseExistingServer: true,
 		timeout: 120000,
 	},
