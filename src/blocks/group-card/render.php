@@ -16,6 +16,20 @@ $soli_page_id = absint( $attributes['pageId'] ?? 0 );
 $soli_page    = $soli_page_id ? get_post( $soli_page_id ) : null;
 
 if ( ! $soli_page || 'publish' !== $soli_page->post_status ) {
+	// Visitors see nothing; editors get a visible stand-in so a card without
+	// a page can't ship unnoticed.
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		return;
+	}
+	$soli_wrapper = get_block_wrapper_attributes( array( 'class' => 'soli-og-card soli-og-card--unlinked' ) );
+	?>
+	<div <?php echo $soli_wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by get_block_wrapper_attributes(). ?>>
+		<span class="soli-og-card-body">
+			<span class="soli-og-card-name"><?php esc_html_e( 'Groepskaart zonder pagina', 'soli-gutenberg-theme' ); ?></span>
+			<span class="soli-og-card-tag"><?php esc_html_e( 'Kies een gepubliceerde pagina in de editor. Bezoekers zien deze kaart niet.', 'soli-gutenberg-theme' ); ?></span>
+		</span>
+	</div>
+	<?php
 	return;
 }
 
