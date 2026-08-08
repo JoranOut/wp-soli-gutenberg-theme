@@ -17,5 +17,4 @@
 <!-- wp:pattern {"slug":"soli-gutenberg-theme/home-agenda-teaser"} /-->
 <!-- wp:pattern {"slug":"soli-gutenberg-theme/home-groups-slider"} /-->
 <!-- wp:pattern {"slug":"soli-gutenberg-theme/home-news"} /-->
-<!-- wp:pattern {"slug":"soli-gutenberg-theme/social-row"} /-->
 <!-- wp:pattern {"slug":"soli-gutenberg-theme/cta-booking"} /-->
