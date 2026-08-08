@@ -14,10 +14,6 @@
 	<div class="wp-block-columns alignwide">
 		<!-- wp:column -->
 		<div class="wp-block-column">
-			<!-- wp:paragraph {"className":"soli-eyebrow"} -->
-			<p class="soli-eyebrow"><?php esc_html_e( 'Word lid', 'soli-gutenberg-theme' ); ?></p>
-			<!-- /wp:paragraph -->
-
 			<!-- wp:heading {"style":{"typography":{"fontSize":"clamp(32px, 3.4vw, 48px)","lineHeight":"1.05"}}} -->
 			<h2 class="wp-block-heading" style="font-size:clamp(32px, 3.4vw, 48px);line-height:1.05">Welkom bij Soli.</h2>
 			<!-- /wp:heading -->
@@ -42,16 +38,12 @@
 
 		<!-- wp:column -->
 		<div class="wp-block-column">
-			<!-- wp:paragraph {"className":"soli-eyebrow"} -->
-			<p class="soli-eyebrow"><?php esc_html_e( 'Muzieklessen', 'soli-gutenberg-theme' ); ?></p>
-			<!-- /wp:paragraph -->
-
 			<!-- wp:heading {"style":{"typography":{"fontSize":"clamp(32px, 3.4vw, 48px)","lineHeight":"1.05"}}} -->
 			<h2 class="wp-block-heading" style="font-size:clamp(32px, 3.4vw, 48px);line-height:1.05">Leer een instrument bespelen.</h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"className":"soli-lead"} -->
-			<p class="soli-lead">Soli houdt vast aan een goede kwaliteit HaFaBra-opleiding door professionele docenten tegen een redelijk tarief. Voor kinderen én volwassenen — blokfluit, saxofoon, klarinet, trompet, slagwerk en meer.</p>
+			<p class="soli-lead">Soli houdt vast aan een goede kwaliteit HaFaBra-opleiding door professionele docenten tegen een redelijk tarief. Voor kinderen én volwassenen: blokfluit, saxofoon, klarinet, trompet, slagwerk en meer.</p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:list {"className":"soli-two-col-list","style":{"typography":{"fontSize":"15px"}}} -->

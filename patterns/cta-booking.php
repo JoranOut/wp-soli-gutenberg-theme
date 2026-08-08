@@ -14,16 +14,12 @@
 	<div class="wp-block-columns alignwide are-vertically-aligned-center">
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
-			<!-- wp:paragraph {"className":"soli-eyebrow"} -->
-			<p class="soli-eyebrow"><?php esc_html_e( 'Steun Soli', 'soli-gutenberg-theme' ); ?></p>
-			<!-- /wp:paragraph -->
-
 			<!-- wp:heading -->
 			<h2 class="wp-block-heading">Geen feest als Soli niet is geweest.</h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"className":"soli-lead"} -->
-			<p class="soli-lead">Het sponsoren van Soli kan tegenwoordig ook gratis — via Sponsorkliks gaat een commissie van je bestelling bij webshops naar Soli. Het kost niks, maar levert de club veel op. Steun je Soli liever direct? Word vriend van Soli of kijk op onze webshop.</p>
+			<p class="soli-lead">Het sponsoren van Soli kan tegenwoordig ook gratis: via Sponsorkliks gaat een commissie van je bestelling bij webshops naar Soli. Het kost niks, maar levert de club veel op. Steun je Soli liever direct? Word vriend van Soli of kijk op onze webshop.</p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons -->

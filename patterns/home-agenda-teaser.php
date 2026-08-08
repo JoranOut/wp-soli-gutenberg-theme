@@ -12,8 +12,8 @@ $soli_events = array(
 	array( 'za 15.08.26', 'Repetitie IJmuider Symfonie', 'Enkele blazers van Soli, aangevuld met strijkers uit de regio repeteren o.l.v. Sjoerd Haver.' ),
 	array( 'za 22.08.26', 'Repetitie IJmuider Symfonie', 'Voorbereiding op de uitvoering van de IJmuider Symfonie op 30 augustus.' ),
 	array( 'ma 24.08.26', 'CUZ meeting', 'Bijeenkomst van alle contactpersonen (Commissie Uitvoerende Zaken).' ),
-	array( 'vr 28.08.26', 'Muziek op schoot — korte cursus', 'Nadere informatie volgt.' ),
-	array( 'za 30.08.26', 'Uitvoering IJmuider Symfonie', 'Slotconcert van de zomer — avondvullend programma in het Muziekcentrum.' ),
+	array( 'vr 28.08.26', 'Muziek op schoot, korte cursus', 'Nadere informatie volgt.' ),
+	array( 'za 30.08.26', 'Uitvoering IJmuider Symfonie', 'Slotconcert van de zomer: avondvullend programma in het Muziekcentrum.' ),
 );
 ?>
 <!-- wp:group {"tagName":"section","backgroundColor":"paper","layout":{"type":"constrained"},"align":"full","style":{"spacing":{"padding":{"top":"80px","bottom":"80px"}},"border":{"top":{"color":"var:preset|color|line","width":"1px","style":"solid"},"bottom":{"color":"var:preset|color|line","width":"1px","style":"solid"}}}} -->
@@ -22,16 +22,12 @@ $soli_events = array(
 	<div class="wp-block-columns alignwide">
 		<!-- wp:column {"width":"36%"} -->
 		<div class="wp-block-column" style="flex-basis:36%">
-			<!-- wp:paragraph {"className":"soli-eyebrow"} -->
-			<p class="soli-eyebrow"><?php esc_html_e( 'Agenda', 'soli-gutenberg-theme' ); ?></p>
-			<!-- /wp:paragraph -->
-
-			<!-- wp:heading {"style":{"spacing":{"margin":{"top":"20px"}}}} -->
-			<h2 class="wp-block-heading" style="margin-top:20px">Binnenkort in de agenda.</h2>
+			<!-- wp:heading -->
+			<h2 class="wp-block-heading">Binnenkort in de agenda.</h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"className":"soli-lead"} -->
-			<p class="soli-lead">Repetities, concerten en muzikale momenten — bekijk wat er de komende weken op het programma staat.</p>
+			<p class="soli-lead">Repetities, concerten en muzikale momenten. Bekijk wat er de komende weken op het programma staat.</p>
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons -->
@@ -73,7 +69,7 @@ $soli_events = array(
 			<!-- /wp:group -->
 
 			<!-- wp:paragraph {"className":"soli-placeholder-note"} -->
-			<p class="soli-placeholder-note"><?php esc_html_e( 'Voorbeeldweergave — wordt vervangen door soli/event-view-list (wp-soli-event-plugin).', 'soli-gutenberg-theme' ); ?></p>
+			<p class="soli-placeholder-note"><?php esc_html_e( 'Voorbeeldweergave, wordt vervangen door soli/event-view-list (wp-soli-event-plugin).', 'soli-gutenberg-theme' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->

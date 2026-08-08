@@ -26,11 +26,11 @@ $soli_mijn_agenda  = array(
 	array( 'wo 28.08.26', 'Muzieklessen starten', 'Muziekcentrum Soli' ),
 );
 $soli_orkesten     = array(
-	array( 'Slagwerkgroep', '🗓️ di · 19:30', '/orkesten-en-groepen/slagwerkgroep/' ),
-	array( 'Funband', '🗓️ 1× per 3 weken', '/orkesten-en-groepen/funband/' ),
-	array( 'Marsorkest', '🗓️ op afspraak', '/orkesten-en-groepen/marsorkest/' ),
-	array( 'Harmonie', '🗓️ ma · 20:00', '/orkesten-en-groepen/harmonie-orkest/' ),
-	array( 'Opleidingsorkest', '🗓️ vr · 18:45', '/orkesten-en-groepen/opleidingsorkest/' ),
+	array( 'Slagwerkgroep', 'di · 19:30', '/orkesten-en-groepen/slagwerkgroep/' ),
+	array( 'Funband', '1× per 3 weken', '/orkesten-en-groepen/funband/' ),
+	array( 'Marsorkest', 'op afspraak', '/orkesten-en-groepen/marsorkest/' ),
+	array( 'Harmonie', 'ma · 20:00', '/orkesten-en-groepen/harmonie-orkest/' ),
+	array( 'Opleidingsorkest', 'vr · 18:45', '/orkesten-en-groepen/opleidingsorkest/' ),
 );
 ?>
 <!-- wp:group {"tagName":"section","gradient":"maroon-fade","align":"full","layout":{"type":"constrained"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|60"}},"elements":{"link":{"color":{"text":"var:preset|color|white"}}}},"textColor":"white"} -->
@@ -97,10 +97,10 @@ $soli_orkesten     = array(
 
 	<!-- wp:group {"align":"wide","className":"soli-quicklinks","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}},"layout":{"type":"flex","flexWrap":"wrap"},"fontSize":"small","fontFamily":"sans"} -->
 	<div class="wp-block-group alignwide soli-quicklinks has-sans-font-family has-small-font-size" style="margin-top:var(--wp--preset--spacing--40)">
-		<!-- wp:paragraph --><p>📄 <a href="#"><?php esc_html_e( 'Statuten', 'soli-gutenberg-theme' ); ?></a></p><!-- /wp:paragraph -->
-		<!-- wp:paragraph --><p>📄 <a href="#"><?php esc_html_e( 'Huishoudelijk reglement', 'soli-gutenberg-theme' ); ?></a></p><!-- /wp:paragraph -->
-		<!-- wp:paragraph --><p>📄 <a href="#"><?php esc_html_e( 'Vijfjarenplan', 'soli-gutenberg-theme' ); ?></a></p><!-- /wp:paragraph -->
-		<!-- wp:paragraph --><p>🔗 <a href="#mijn-agenda"><?php esc_html_e( 'Taken overzicht', 'soli-gutenberg-theme' ); ?></a></p><!-- /wp:paragraph -->
+		<!-- wp:paragraph {"className":"soli-ic soli-ic-file"} --><p class="soli-ic soli-ic-file"><a href="#"><?php esc_html_e( 'Statuten', 'soli-gutenberg-theme' ); ?></a></p><!-- /wp:paragraph -->
+		<!-- wp:paragraph {"className":"soli-ic soli-ic-file"} --><p class="soli-ic soli-ic-file"><a href="#"><?php esc_html_e( 'Huishoudelijk reglement', 'soli-gutenberg-theme' ); ?></a></p><!-- /wp:paragraph -->
+		<!-- wp:paragraph {"className":"soli-ic soli-ic-file"} --><p class="soli-ic soli-ic-file"><a href="#"><?php esc_html_e( 'Vijfjarenplan', 'soli-gutenberg-theme' ); ?></a></p><!-- /wp:paragraph -->
+		<!-- wp:paragraph {"className":"soli-ic soli-ic-link"} --><p class="soli-ic soli-ic-link"><a href="#mijn-agenda"><?php esc_html_e( 'Taken overzicht', 'soli-gutenberg-theme' ); ?></a></p><!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
 </section>
@@ -346,7 +346,7 @@ $soli_orkesten     = array(
 				<!-- wp:list {"className":"soli-orkesten-list"} -->
 				<ul class="wp-block-list soli-orkesten-list">
 					<?php foreach ( $soli_orkesten as $soli_groep ) : ?>
-					<!-- wp:list-item --><li><a href="<?php echo esc_url( home_url( $soli_groep[2] ) ); ?>"><span class="soli-ork-name"><?php echo esc_html( $soli_groep[0] ); ?></span><span class="soli-ork-meet"><?php echo esc_html( $soli_groep[1] ); ?></span></a></li><!-- /wp:list-item -->
+					<!-- wp:list-item --><li><a href="<?php echo esc_url( home_url( $soli_groep[2] ) ); ?>"><span class="soli-ork-name"><?php echo esc_html( $soli_groep[0] ); ?></span><span class="soli-ork-meet soli-ic soli-ic-cal"><?php echo esc_html( $soli_groep[1] ); ?></span></a></li><!-- /wp:list-item -->
 					<?php endforeach; ?>
 				</ul>
 				<!-- /wp:list -->

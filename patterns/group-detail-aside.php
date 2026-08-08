@@ -36,7 +36,7 @@
 			<!-- wp:group {"className":"soli-fact","layout":{"type":"default"},"style":{"spacing":{"blockGap":"0.15rem"}}} -->
 			<div class="wp-block-group soli-fact">
 				<!-- wp:paragraph {"className":"soli-fact-label"} --><p class="soli-fact-label"><?php esc_html_e( 'Repetitie', 'soli-gutenberg-theme' ); ?></p><!-- /wp:paragraph -->
-				<!-- wp:paragraph {"className":"soli-fact-value"} --><p class="soli-fact-value"><?php esc_html_e( 'eens per drie weken, vrij/za 19.30–22.00 uur', 'soli-gutenberg-theme' ); ?></p><!-- /wp:paragraph -->
+				<!-- wp:paragraph {"className":"soli-fact-value"} --><p class="soli-fact-value"><?php esc_html_e( 'eens per drie weken, vrij/za 19.30-22.00 uur', 'soli-gutenberg-theme' ); ?></p><!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
 		</div>

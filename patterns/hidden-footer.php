@@ -105,7 +105,7 @@
 	<!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 	<div class="wp-block-group alignwide">
 		<!-- wp:paragraph {"fontSize":"small"} -->
-		<p class="has-small-font-size"><?php esc_html_e( '© Muziekvereniging Soli — Alle rechten voorbehouden.', 'soli-gutenberg-theme' ); ?></p>
+		<p class="has-small-font-size"><?php esc_html_e( '© Muziekvereniging Soli. Alle rechten voorbehouden.', 'soli-gutenberg-theme' ); ?></p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:paragraph {"fontSize":"small"} -->

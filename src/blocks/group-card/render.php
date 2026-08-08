@@ -49,7 +49,7 @@ if ( $soli_is_tile ) {
 			<span class="soli-tile-cap">
 				<span class="soli-tile-name"><?php echo esc_html( $soli_name ); ?></span>
 				<?php if ( $soli_rehearsal ) : ?>
-					<span class="soli-tile-meet">🗓️ <?php echo esc_html( $soli_rehearsal ); ?></span>
+					<span class="soli-tile-meet soli-ic soli-ic-cal"><?php echo esc_html( $soli_rehearsal ); ?></span>
 				<?php endif; ?>
 			</span>
 		</span>
@@ -64,7 +64,7 @@ $soli_wrapper = get_block_wrapper_attributes( array( 'class' => 'soli-og-card' )
 	<span class="soli-og-card-img"<?php echo $soli_image ? ' style="background-image:url(\'' . esc_url( $soli_image ) . '\')"' : ''; ?> role="img" aria-label="<?php echo esc_attr( $soli_name ); ?>"></span>
 	<span class="soli-og-card-body">
 		<?php if ( $soli_rehearsal ) : ?>
-			<span class="soli-og-card-meta">🗓️ <?php echo esc_html( $soli_rehearsal ); ?></span>
+			<span class="soli-og-card-meta soli-ic soli-ic-cal"><?php echo esc_html( $soli_rehearsal ); ?></span>
 		<?php endif; ?>
 		<span class="soli-og-card-name"><?php echo esc_html( $soli_name ); ?></span>
 		<?php if ( $soli_tagline ) : ?>
