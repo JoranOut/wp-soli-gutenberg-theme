@@ -42,10 +42,21 @@ test.describe( 'Soli setup screen', () => {
 		page,
 		requestUtils,
 	} ) => {
-		const before = await requestUtils.rest( {
-			path: '/wp/v2/pages',
-			params: { per_page: 100, status: 'publish', _fields: 'id' },
-		} );
+		// Scratch pages from other specs are excluded: they come and go while
+		// this runs, and a raw total would make the comparison depend on the
+		// timing of unrelated tests rather than on the initializer.
+		const sitePages = async () => {
+			const pages = await requestUtils.rest( {
+				path: '/wp/v2/pages',
+				params: { per_page: 100, status: 'publish', _fields: 'id,slug' },
+			} );
+
+			return pages.filter(
+				( item ) => ! item.slug.startsWith( 'soli-e2e-' )
+			);
+		};
+
+		const before = await sitePages();
 
 		await visit( admin );
 		await page
@@ -56,10 +67,7 @@ test.describe( 'Soli setup screen', () => {
 			'0 aangemaakt'
 		);
 
-		const after = await requestUtils.rest( {
-			path: '/wp/v2/pages',
-			params: { per_page: 100, status: 'publish', _fields: 'id' },
-		} );
+		const after = await sitePages();
 		expect( after.length ).toBe( before.length );
 	} );
 

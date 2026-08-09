@@ -1,54 +1,33 @@
-const { test, expect } = require( '@wordpress/e2e-test-utils-playwright' );
+const { test, expect } = require( './fixtures' );
 
 /**
  * Data-driven content blocks that render purely from attributes:
  * soli/concert-details, soli/flyer-callout, soli/program-list — plus the
  * adjacency-driven soli/post-nav on the single template.
+ *
+ * Each test publishes its own holder page through the `content` fixture, which
+ * cleans up per test and assigns explicit slugs (see tests/e2e/fixtures.js).
  */
 test.describe( 'Soli content blocks', () => {
-	const pages = [];
-	const posts = [];
+	const publishPage = async ( content, title, markup ) => {
+		const holder = await content.page( { title, content: markup } );
 
-	test.afterAll( async ( { requestUtils } ) => {
-		for ( const id of pages ) {
-			await requestUtils.rest( {
-				path: `/wp/v2/pages/${ id }`,
-				method: 'DELETE',
-				params: { force: true },
-			} );
-		}
-		for ( const id of posts ) {
-			await requestUtils.rest( {
-				path: `/wp/v2/posts/${ id }`,
-				method: 'DELETE',
-				params: { force: true },
-			} );
-		}
-	} );
-
-	async function publishPage( requestUtils, title, content ) {
-		const p = await requestUtils.rest( {
-			path: '/wp/v2/pages',
-			method: 'POST',
-			data: { title, status: 'publish', content },
-		} );
-		pages.push( p.id );
-		return new URL( p.link ).pathname;
-	}
+		return new URL( holder.link ).pathname;
+	};
 
 	test( 'concert-details renders a facts table and drops empty rows', async ( {
 		page,
-		requestUtils,
+		content,
 	} ) => {
-		const content =
+		const markup =
 			`<!-- wp:soli/concert-details {"rows":[` +
 			`{"label":"Datum","value":"Zaterdag 11 april"},` +
 			`{"label":"Locatie","value":"Soli Muziekcentrum"},` +
 			`{"label":"","value":""}]} /-->`;
 		const path = await publishPage(
-			requestUtils,
+			content,
 			'Concert details E2E',
-			content
+			markup
 		);
 		await page.goto( path );
 
@@ -64,16 +43,12 @@ test.describe( 'Soli content blocks', () => {
 
 	test( 'flyer-callout renders a link card that opens in a new tab', async ( {
 		page,
-		requestUtils,
+		content,
 	} ) => {
-		const content =
+		const markup =
 			`<!-- wp:soli/flyer-callout {"eyebrow":"Flyer","title":"Najaarsconcert",` +
 			`"cta":"Bekijk de flyer","url":"https://example.com/flyer","opensInNewTab":true} /-->`;
-		const path = await publishPage(
-			requestUtils,
-			'Flyer callout E2E',
-			content
-		);
+		const path = await publishPage( content, 'Flyer callout E2E', markup );
 		await page.goto( path );
 
 		const link = page.locator( '.soli-flyer-callout__link' );
@@ -96,15 +71,11 @@ test.describe( 'Soli content blocks', () => {
 
 	test( 'program-list renders pill items and drops empty entries', async ( {
 		page,
-		requestUtils,
+		content,
 	} ) => {
-		const content =
+		const markup =
 			`<!-- wp:soli/program-list {"items":["Ouverture 1812","In the Hall of the Mountain King","","Bolero"]} /-->`;
-		const path = await publishPage(
-			requestUtils,
-			'Program list E2E',
-			content
-		);
+		const path = await publishPage( content, 'Program list E2E', markup );
 		await page.goto( path );
 
 		const list = page.locator( '.soli-program-list' );
@@ -113,9 +84,9 @@ test.describe( 'Soli content blocks', () => {
 		await expect( list.locator( '.soli-program-list__item' ) ).toHaveCount(
 			3
 		);
-		await expect( list.locator( '.soli-program-list__text' ).first() ).toHaveText(
-			'Ouverture 1812'
-		);
+		await expect(
+			list.locator( '.soli-program-list__text' ).first()
+		).toHaveText( 'Ouverture 1812' );
 		await expect(
 			list.locator( '.soli-program-list__dot' ).first()
 		).toBeAttached();
@@ -123,21 +94,26 @@ test.describe( 'Soli content blocks', () => {
 
 	test( 'post-nav shows previous/next adjacent posts on a single post', async ( {
 		page,
-		requestUtils,
+		content,
 	} ) => {
-		const make = async ( title, date ) => {
-			const p = await requestUtils.rest( {
-				path: '/wp/v2/posts',
-				method: 'POST',
-				data: { title, status: 'publish', date },
-			} );
-			posts.push( p.id );
-			return p;
-		};
-		// Older → middle → newer by date; adjacency is date-ordered.
-		const older = await make( 'Postnav Ouder', '2019-01-01T10:00:00' );
-		const middle = await make( 'Postnav Midden', '2019-01-02T10:00:00' );
-		const newer = await make( 'Postnav Nieuwer', '2019-01-03T10:00:00' );
+		// Adjacency is date-ordered over every post on the site and cannot be
+		// scoped to a category, so the three posts must be consecutive in time
+		// with nothing between them — hence a publish window reserved for this
+		// test (see uniqueWindow in tests/e2e/fixtures.js).
+		const label = content.uniqueSlug( 'postnav' );
+		const window = content.uniqueWindow();
+		const older = await content.post( {
+			title: `${ label } Ouder`,
+			date: window.at( 0 ),
+		} );
+		const middle = await content.post( {
+			title: `${ label } Midden`,
+			date: window.at( 60 ),
+		} );
+		const newer = await content.post( {
+			title: `${ label } Nieuwer`,
+			date: window.at( 120 ),
+		} );
 
 		await page.goto( new URL( middle.link ).pathname );
 
@@ -151,14 +127,14 @@ test.describe( 'Soli content blocks', () => {
 			'href',
 			new RegExp( new URL( older.link ).pathname )
 		);
-		await expect( prev ).toContainText( 'Postnav Ouder' );
+		await expect( prev ).toContainText( `${ label } Ouder` );
 		await expect( prev ).toContainText( 'Ouder bericht' );
 
 		await expect( next ).toHaveAttribute(
 			'href',
 			new RegExp( new URL( newer.link ).pathname )
 		);
-		await expect( next ).toContainText( 'Postnav Nieuwer' );
+		await expect( next ).toContainText( `${ label } Nieuwer` );
 		await expect( next ).toContainText( 'Nieuwer bericht' );
 	} );
 } );
