@@ -1,4 +1,4 @@
-const { test, expect } = require( '@wordpress/e2e-test-utils-playwright' );
+const { test, expect } = require( './fixtures' );
 
 /**
  * soli/post-search + the query_loop_block_query_vars bridge in functions.php.
@@ -8,35 +8,28 @@ const { test, expect } = require( '@wordpress/e2e-test-utils-playwright' );
  * Query Loop. These tests drive the real form on a real page rather than
  * hitting URLs directly, so a break in either half fails the suite.
  *
- * The loop is restricted to a category created per run. beforeAll runs once per
- * worker under fullyParallel, and the loop would otherwise draw from the shared
- * post pool — so without that restriction the seeds of parallel workers (and the
- * demo content from bin/setup.sh) would leak into the counts.
+ * Both the category and the page are created per test by the `content` fixture,
+ * which also assigns explicit slugs. The category keeps the loop from drawing on
+ * the shared post pool; the explicit slugs keep two parallel workers from being
+ * handed the same page URL by `wp_unique_post_slug()` and then reading each
+ * other's results. See tests/e2e/fixtures.js.
  */
 test.describe( 'Query Loop search', () => {
-	const created = { posts: [], pages: [], categories: [] };
-	let pageUrl;
+	/**
+	 * A search page over three posts nobody else can see.
+	 *
+	 * Dates are chosen so date-order and relevance-order DISAGREE: the
+	 * content-only match is the newest, so it would come first under the default
+	 * orderby=date. Without that opposition the ranking test passes even when
+	 * relevance ordering is removed. All are back-dated so the seeded news pages
+	 * stay undisturbed.
+	 *
+	 * @param {Object} content The content fixture.
+	 * @return {Promise<string>} Path of the search page.
+	 */
+	async function searchPage( content ) {
+		const category = await content.category();
 
-	test.beforeAll( async ( { requestUtils } ) => {
-		// Random suffix, not just a timestamp: parallel workers start within the
-		// same millisecond, and a duplicate name resolves to the *existing* term,
-		// which would silently pool every worker's posts into one category.
-		const unique = `${ Date.now() }-${ Math.random()
-			.toString( 36 )
-			.slice( 2, 8 ) }`;
-
-		const category = await requestUtils.rest( {
-			path: '/wp/v2/categories',
-			method: 'POST',
-			data: { name: `E2E Zoeken ${ unique }` },
-		} );
-		created.categories.push( category.id );
-
-		// Dates are chosen so date-order and relevance-order DISAGREE: the
-		// content-only match is the newest, so it would come first under the
-		// default orderby=date. Without that opposition the ranking test passes
-		// even when relevance ordering is removed. All are back-dated so the
-		// seeded news pages stay undisturbed.
 		const seed = [
 			// Title match for "trompetsolo" — oldest, so only relevance lifts it.
 			{
@@ -59,23 +52,17 @@ test.describe( 'Query Loop search', () => {
 		];
 
 		for ( const item of seed ) {
-			const post = await requestUtils.rest( {
-				path: '/wp/v2/posts',
-				method: 'POST',
-				data: {
-					title: item.title,
-					content: item.content,
-					status: 'publish',
-					categories: [ category.id ],
-					date: item.date,
-				},
+			await content.post( {
+				title: item.title,
+				content: item.content,
+				categories: [ category.id ],
+				date: item.date,
 			} );
-			created.posts.push( post.id );
 		}
 
 		// Search block scoped to posts, plus a Query Loop that does NOT inherit
 		// (inherited loops render from the main query and never reach the filter).
-		const content =
+		const markup =
 			`<!-- wp:soli/post-search {"postType":"post"} /-->\n\n` +
 			`<!-- wp:query {"queryId":901,"query":{"perPage":20,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false,"taxQuery":{"category":[${ category.id }]}}} -->\n` +
 			`<div class="wp-block-query"><!-- wp:post-template -->\n` +
@@ -86,42 +73,13 @@ test.describe( 'Query Loop search', () => {
 			`<!-- /wp:query-no-results --></div>\n` +
 			`<!-- /wp:query -->`;
 
-		const testPage = await requestUtils.rest( {
-			path: '/wp/v2/pages',
-			method: 'POST',
-			data: {
-				title: 'E2E Zoektest',
-				status: 'publish',
-				content,
-			},
+		const testPage = await content.page( {
+			title: 'E2E Zoektest',
+			content: markup,
 		} );
-		created.pages.push( testPage.id );
-		pageUrl = new URL( testPage.link ).pathname;
-	} );
 
-	test.afterAll( async ( { requestUtils } ) => {
-		for ( const id of created.posts ) {
-			await requestUtils.rest( {
-				path: `/wp/v2/posts/${ id }`,
-				method: 'DELETE',
-				params: { force: true },
-			} );
-		}
-		for ( const id of created.pages ) {
-			await requestUtils.rest( {
-				path: `/wp/v2/pages/${ id }`,
-				method: 'DELETE',
-				params: { force: true },
-			} );
-		}
-		for ( const id of created.categories ) {
-			await requestUtils.rest( {
-				path: `/wp/v2/categories/${ id }`,
-				method: 'DELETE',
-				params: { force: true },
-			} );
-		}
-	} );
+		return new URL( testPage.link ).pathname;
+	}
 
 	// The page template renders the page's own title as .wp-block-post-title,
 	// so result assertions must stay inside the loop.
@@ -130,8 +88,9 @@ test.describe( 'Query Loop search', () => {
 
 	test( 'renders the form and leaves the loop unfiltered without a term', async ( {
 		page,
+		content,
 	} ) => {
-		await page.goto( pageUrl );
+		await page.goto( await searchPage( content ) );
 
 		const form = page.locator( '.wp-block-soli-post-search' );
 		await expect( form.locator( '.soli-post-search__input' ) ).toBeVisible();
@@ -153,8 +112,9 @@ test.describe( 'Query Loop search', () => {
 
 	test( 'submitting the form narrows the loop and prefills the term', async ( {
 		page,
+		content,
 	} ) => {
-		await page.goto( pageUrl );
+		await page.goto( await searchPage( content ) );
 
 		await page.locator( '.soli-post-search__input' ).fill( 'blokfluitklas' );
 		await page.locator( '.soli-post-search__button' ).click();
@@ -176,10 +136,12 @@ test.describe( 'Query Loop search', () => {
 
 	test( 'ranks title matches above content-only matches', async ( {
 		page,
+		content,
 	} ) => {
 		// Guards the orderby => relevance line: build_query_vars_from_query_block()
 		// always writes an explicit orderby (default date), so without it these two
 		// would come back in publish order instead of by relevance.
+		const pageUrl = await searchPage( content );
 		await page.goto( `${ pageUrl }?q=trompetsolo&q_type=post` );
 
 		await expect( results( page ) ).toHaveCount( 2 );
@@ -191,8 +153,10 @@ test.describe( 'Query Loop search', () => {
 
 	test( 'ignores a term scoped to a different post type', async ( {
 		page,
+		content,
 	} ) => {
 		// Scope mismatch: the loop queries posts, so the term must not apply.
+		const pageUrl = await searchPage( content );
 		await page.goto( `${ pageUrl }?q=blokfluitklas&q_type=page` );
 
 		await expect( results( page ) ).toHaveCount( 3 );
@@ -200,14 +164,20 @@ test.describe( 'Query Loop search', () => {
 
 	test( 'falls through to the no-results block when nothing matches', async ( {
 		page,
+		content,
 	} ) => {
+		const pageUrl = await searchPage( content );
 		await page.goto( `${ pageUrl }?q=zzzqqqgeenmatch&q_type=post` );
 
 		await expect( results( page ) ).toHaveCount( 0 );
 		await expect( page.getByText( 'E2E-GEEN-RESULTATEN' ) ).toBeVisible();
 	} );
 
-	test( 'escapes the search term it echoes back', async ( { page } ) => {
+	test( 'escapes the search term it echoes back', async ( {
+		page,
+		content,
+	} ) => {
+		const pageUrl = await searchPage( content );
 		const payload = '"><script>window.__xss = true;</script>';
 		await page.goto(
 			`${ pageUrl }?q=${ encodeURIComponent( payload ) }&q_type=post`

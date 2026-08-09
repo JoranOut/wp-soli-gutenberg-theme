@@ -1,4 +1,4 @@
-const { test, expect } = require( '@wordpress/e2e-test-utils-playwright' );
+const { test, expect } = require( './fixtures' );
 
 /**
  * Every front-end route must render through its template without PHP
@@ -47,36 +47,6 @@ async function expectNoPhpDiagnostics( page, route ) {
 }
 
 test.describe( 'Front-end renders without PHP diagnostics', () => {
-	const created = { posts: [] };
-	let postLink;
-
-	test.beforeAll( async ( { requestUtils } ) => {
-		const post = await requestUtils.rest( {
-			path: '/wp/v2/posts',
-			method: 'POST',
-			data: {
-				title: 'PHP diagnose testbericht',
-				content:
-					'<!-- wp:paragraph --><p>Inhoud voor de single template.</p><!-- /wp:paragraph -->',
-				status: 'publish',
-				// Back-dated so it does not disturb the newest news pages.
-				date: '2017-02-01T10:00:00',
-			},
-		} );
-		created.posts.push( post.id );
-		postLink = post.link;
-	} );
-
-	test.afterAll( async ( { requestUtils } ) => {
-		for ( const id of created.posts ) {
-			await requestUtils.rest( {
-				path: `/wp/v2/posts/${ id }`,
-				method: 'DELETE',
-				params: { force: true },
-			} );
-		}
-	} );
-
 	/**
 	 * Each route also names a selector that only resolves when the intended
 	 * template — and the header/footer template parts it pulls in — actually
@@ -96,7 +66,9 @@ test.describe( 'Front-end renders without PHP diagnostics', () => {
 		},
 		{
 			name: 'single post (single.html)',
-			path: null, // resolved from the seeded post
+			// Resolved from a post the test publishes itself, so the route is
+			// covered on a site bin/setup.sh has not seeded.
+			path: null,
 			marker: 'main .soli-post-title',
 		},
 		{
@@ -112,8 +84,20 @@ test.describe( 'Front-end renders without PHP diagnostics', () => {
 	];
 
 	for ( const route of routes ) {
-		test( `${ route.name }`, async ( { page } ) => {
-			const target = route.path ?? postLink;
+		test( `${ route.name }`, async ( { page, content } ) => {
+			let target = route.path;
+
+			if ( null === target ) {
+				const post = await content.post( {
+					title: 'PHP diagnose testbericht',
+					content:
+						'<!-- wp:paragraph --><p>Inhoud voor de single template.</p><!-- /wp:paragraph -->',
+					// Back-dated so it does not disturb the newest news pages.
+					date: '2017-02-01T10:00:00',
+				} );
+				target = new URL( post.link ).pathname;
+			}
+
 			const response = await page.goto( target );
 
 			// The 404 route must genuinely 404; the rest must be 200.

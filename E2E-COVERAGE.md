@@ -25,7 +25,7 @@ Legend: ✅ covered · ⛔ not e2e-suitable
 |------|----------|------------|--------|
 | `setup` | textdomain + `add_editor_style(soli.css)` | `theme-active.spec.js` | ✅ |
 | `post_editor_style` | paper canvas in the **post** editor only (+ page scope check) | `editor.spec.js` | ✅ |
-| `fix_query_offset` | correct offset pagination (no page-1/page-2 overlap) | `masonry.spec.js` | ✅ |
+| `fix_query_offset` | recomputes the SQL offset for offset queries | behaviour covered by `masonry.spec.js`; the filter itself is redundant on WP 7.0 (core `build_query_vars_from_query_block()` already computes the same value), so no test can distinguish it | ⛔ |
 | `enqueue_styles` | front CSS + `soli-notes.js` click burst | `interactions.spec.js` | ✅ |
 | `editor_content_width` | 736px writing column in the post editor only (+ page scope check) | `editor.spec.js` | ✅ |
 | `register_blocks` | blocks registered from manifest | all block specs render dynamic output | ✅ |
@@ -50,7 +50,7 @@ Legend: ✅ covered · ⛔ not e2e-suitable
 - `blocks.spec.js` — group-card, group-slider (pre-existing)
 - `patterns.spec.js` — front page, orkesten, pattern + category registration (pre-existing)
 - `content-blocks.spec.js` — concert-details, flyer-callout, program-list, post-nav (NEW)
-- `masonry.spec.js` — masonry packing + load-more + offset fix (NEW)
+- `masonry.spec.js` — masonry packing, responsive column counts, load-more batching (NEW)
 - `queries.spec.js` — feature, category archive, search (NEW)
 - `editor.spec.js` — paper canvas, 736px width (both post-scoped), block styles (NEW)
 - `interactions.spec.js` — soli-notes click burst (NEW)
@@ -65,8 +65,30 @@ Legend: ✅ covered · ⛔ not e2e-suitable
 
 - Tests target the **tests** env on port 8891 (this project's `.wp-env.override.json`);
   8889 hosts a different project locally, so `WP_BASE_URL` must be set when running by hand.
-- `masonry.spec.js` deliberately creates **no** extra posts: totals then depend on run
-  order/other specs. It asserts invariants stable on any seed — 3 initial cards (perPage),
-  an appended non-overlapping batch (offset fix), and button retirement — reading titles
-  via one atomic `$$eval` so the Interactivity re-pack can't be caught mid-rebuild.
-- Post-creating specs back-date their posts so they never disturb the newest news pages.
+- Every spec that needs content uses the per-test `content` fixture in
+  `tests/e2e/fixtures.js` rather than `test.beforeAll` with module-level state.
+  Two things made the suite unreliable under `fullyParallel` before that:
+
+  1. Under `fullyParallel` each test is its own group, so a worker picking up a
+     second test from the same file re-runs `beforeAll` while the module-level
+     ID array still holds the previous group's deleted IDs. `afterAll` then
+     DELETEd a stale ID, hit `rest_post_invalid_id`, threw, and abandoned the
+     rest of the cleanup — leaking content from run to run.
+  2. Specs posted fixed titles and let WordPress derive the slug.
+     `wp_unique_post_slug()` is not race-safe, so concurrent inserts of the same
+     title can be handed the *same* slug; two workers then resolved one URL and
+     read each other's content. Every helper now sends an explicit
+     process-unique slug.
+
+  Teardown is per test, deletes in reverse creation order and tolerates an
+  already-removed ID.
+
+- `masonry.spec.js` builds home.html's news grid on a page of its own over a
+  category of its own, so the batch sizes and page count are exact instead of
+  moving with the shared post pool. Titles are read via one atomic `$$eval` so
+  the Interactivity re-pack can't be caught mid-rebuild.
+- Specs that publish into the shared archive back-date their posts so they never
+  disturb the newest news pages. `soli/post-nav` adjacency cannot be scoped to a
+  category, so that test reserves its own publish window (`content.uniqueWindow`).
+- The suite is verified green both serially (as CI runs it, `workers: 1`) and with
+  8 parallel workers, with no net content left behind.

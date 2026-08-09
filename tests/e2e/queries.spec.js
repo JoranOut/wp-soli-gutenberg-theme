@@ -1,4 +1,4 @@
-const { test, expect } = require( '@wordpress/e2e-test-utils-playwright' );
+const { test, expect } = require( './fixtures' );
 
 /**
  * Template-level queries: the home feature post, category archives and search
@@ -6,90 +6,77 @@ const { test, expect } = require( '@wordpress/e2e-test-utils-playwright' );
  * index.html is WordPress's bare fallback — with archive.html/search.html/
  * home.html present it is not reachable in normal browsing, and its inherited
  * loop is exercised by the archive and search cases below.)
+ *
+ * Every test publishes the posts it reads through the per-test `content`
+ * fixture, so nothing here depends on bin/setup.sh having seeded an archive or
+ * on what other specs are creating in parallel.
  */
 test.describe( 'Template queries', () => {
-	const created = { posts: [], categories: [] };
-
-	test.afterAll( async ( { requestUtils } ) => {
-		for ( const id of created.posts ) {
-			await requestUtils.rest( {
-				path: `/wp/v2/posts/${ id }`,
-				method: 'DELETE',
-				params: { force: true },
-			} );
-		}
-		for ( const id of created.categories ) {
-			await requestUtils.rest( {
-				path: `/wp/v2/categories/${ id }`,
-				method: 'DELETE',
-				params: { force: true },
-			} );
-		}
-	} );
-
 	test( 'home feature query renders one linked feature post', async ( {
 		page,
+		content,
 	} ) => {
+		await content.post( {
+			title: `${ content.uniqueSlug( 'feature' ) } bericht`,
+			date: '2016-03-01T10:00:00',
+		} );
+
 		await page.goto( '/nieuws/' );
 
 		const feature = page.locator( '.soli-news-feature' );
 		await expect( feature ).toHaveCount( 1 );
 		// A linked post title inside the feature card.
-		await expect(
-			feature.locator( '.wp-block-post-title a' )
-		).toBeVisible();
+		await expect( feature.locator( '.wp-block-post-title a' ) ).toBeVisible();
 	} );
 
 	test( 'category archive renders the masonry query', async ( {
 		page,
-		requestUtils,
+		content,
 	} ) => {
-		const cat = await requestUtils.rest( {
-			path: '/wp/v2/categories',
-			method: 'POST',
-			data: { name: 'E2E Rubriek' },
-		} );
-		created.categories.push( cat.id );
+		const name = content.uniqueSlug( 'E2E Rubriek' );
+		const category = await content.category( name );
 
-		const post = await requestUtils.rest( {
-			path: '/wp/v2/posts',
-			method: 'POST',
-			data: {
-				title: 'Archief testbericht',
-				status: 'publish',
-				categories: [ cat.id ],
-				// Back-dated so it does not disturb the newest news pages.
-				date: '2017-03-01T10:00:00',
-			},
+		const title = `${ content.uniqueSlug( 'archief' ) } testbericht`;
+		await content.post( {
+			title,
+			categories: [ category.id ],
+			// Back-dated so it does not disturb the newest news pages.
+			date: '2017-03-01T10:00:00',
 		} );
-		created.posts.push( post.id );
 
 		// ?cat= always resolves to the category archive regardless of permalinks.
-		await page.goto( `/?cat=${ cat.id }` );
+		await page.goto( `/?cat=${ category.id }` );
 
 		await expect( page.locator( '.wp-block-query-title' ) ).toContainText(
-			'E2E Rubriek'
+			name
 		);
 
 		const masonry = page.locator( '.wp-block-soli-masonry' );
 		await expect( masonry ).toBeVisible();
 		await expect(
-			masonry.locator( '.wp-block-post-title', {
-				hasText: 'Archief testbericht',
-			} )
+			masonry.locator( '.wp-block-post-title', { hasText: title } )
 		).toBeVisible();
 	} );
 
-	test( 'search results render matching posts', async ( { page } ) => {
-		await page.goto( '/?s=Soli' );
+	test( 'search results render matching posts', async ( {
+		page,
+		content,
+	} ) => {
+		const term = content.uniqueSlug( 'zoekterm' );
+		await content.post( {
+			title: `${ term } in de titel`,
+			date: '2017-03-02T10:00:00',
+		} );
+
+		await page.goto( `/?s=${ encodeURIComponent( term ) }` );
 
 		// Search template query-title echoes the term.
 		await expect( page.locator( '.wp-block-query-title' ) ).toContainText(
-			'Soli'
+			term
 		);
-		// At least one result card.
+		// The seeded post comes back as a result card.
 		await expect(
-			page.locator( '.wp-block-post-title' ).first()
+			page.locator( '.wp-block-post-title', { hasText: term } )
 		).toBeVisible();
 	} );
 } );
