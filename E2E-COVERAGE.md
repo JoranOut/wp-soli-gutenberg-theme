@@ -2,8 +2,12 @@
 
 Inventory for the task "list all business logic, blocks and special queries; ensure an e2e test for every one of them", mapping each testable unit to the spec that covers it.
 
-Run locally against the tests env: `WP_BASE_URL=http://localhost:8891 npm run test:e2e`
-(In CI this project's env owns the default ports, so `npm run test:e2e` is enough.)
+Run locally against the tests env: `WP_BASE_URL=http://localhost:8903 npm run test:e2e`
+
+`.wp-env.json` pins this repo to ports **8902** (dev) and **8903** (tests) so it cannot
+collide with the other Soli repos running a wp-env concurrently. `playwright.config.js`
+still defaults its `baseURL` to 8889, so `WP_BASE_URL` must be set when running by hand
+(or in a local, gitignored `.wp-env.override.json`).
 
 Legend: ✅ covered · ⛔ not e2e-suitable
 
@@ -55,6 +59,9 @@ Legend: ✅ covered · ⛔ not e2e-suitable
 - `editor.spec.js` — paper canvas, 736px width (both post-scoped), block styles (NEW)
 - `interactions.spec.js` — soli-notes click burst (NEW)
 - `php-errors.spec.js` — every front-end route (front page, posts page, single, search, 404) resolves its template + header/footer parts and renders with no PHP warning/notice/deprecation, plus a guard asserting `WP_DEBUG` is really on in the tests env (NEW)
+- `debug-mode.spec.js` — reads `WP_DEBUG` and `WP_DEBUG_DISPLAY` off the Site Health
+  Info tab and fails unless both report enabled, so the diagnostics assertions above
+  cannot go vacuous when wp-env's tests-env defaults win over the root-level config (NEW)
 
 ## Notes / decisions
 
@@ -63,8 +70,8 @@ Legend: ✅ covered · ⛔ not e2e-suitable
   tests environment and ignores the top-level block there, so without the
   duplicate the PHP-diagnostic assertions pass over real warnings. See CLAUDE.md.
 
-- Tests target the **tests** env on port 8891 (this project's `.wp-env.override.json`);
-  8889 hosts a different project locally, so `WP_BASE_URL` must be set when running by hand.
+- Tests target the **tests** env on port 8903 (pinned in `.wp-env.json`); 8889 hosts a
+  different project locally, so `WP_BASE_URL` must be set when running by hand.
 - Every spec that needs content uses the per-test `content` fixture in
   `tests/e2e/fixtures.js` rather than `test.beforeAll` with module-level state.
   Two things made the suite unreliable under `fullyParallel` before that:
