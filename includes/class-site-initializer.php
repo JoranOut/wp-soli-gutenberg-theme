@@ -281,8 +281,23 @@ final class Site_Initializer {
 	 * @return bool True when an image was imported, false when skipped or missing.
 	 */
 	private static function set_featured( int $post_id, string $image ): bool {
-		if ( get_post_thumbnail_id( $post_id ) ) {
-			return false;
+		$existing = (int) get_post_thumbnail_id( $post_id );
+
+		if ( $existing ) {
+			$file = get_attached_file( $existing );
+
+			if ( $file && file_exists( $file ) ) {
+				return false;
+			}
+
+			/*
+			 * Dangling thumbnail: the attachment row outlived its file, which is
+			 * what happens when wp-content/uploads is wiped while the database
+			 * volume survives. Without this the seeder reports "overgeslagen"
+			 * forever and every featured image keeps 404ing.
+			 */
+			wp_delete_attachment( $existing, true );
+			delete_post_thumbnail( $post_id );
 		}
 
 		$source = get_theme_file_path( 'assets/images/demo/' . $image );
