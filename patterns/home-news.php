@@ -70,15 +70,12 @@
 	<!-- wp:query {"query":{"perPage":3,"offset":1,"postType":"post","order":"desc","orderBy":"date","inherit":false},"align":"wide","className":"soli-news-grid","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
 	<div class="wp-block-query alignwide soli-news-grid" style="margin-top:var(--wp--preset--spacing--40)">
 		<!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
-			<!-- wp:group {"className":"is-style-soli-card","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"default"}} -->
-			<div class="wp-block-group is-style-soli-card">
-				<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/10","style":{"border":{"radius":"var:custom|card-radius"}}} /-->
-				<!-- wp:post-date {"format":"j F Y"} /-->
-				<!-- wp:post-title {"isLink":true,"level":3,"fontSize":"x-large"} /-->
-				<!-- wp:post-excerpt {"moreText":"Lees meer →","excerptLength":25,"fontSize":"small"} /-->
-			</div>
-			<!-- /wp:group -->
+			<!-- wp:pattern {"slug":"soli-gutenberg-theme/news-card"} /-->
 		<!-- /wp:post-template -->
+
+		<!-- wp:query-no-results -->
+			<!-- wp:pattern {"slug":"soli-gutenberg-theme/hidden-no-results"} /-->
+		<!-- /wp:query-no-results -->
 	</div>
 	<!-- /wp:query -->
 </section>

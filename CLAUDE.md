@@ -70,7 +70,23 @@ npm run test:e2e      # Playwright against the tests env (:8889)
 - `playwright.config.js` uses the wp-scripts global setup + storage state so `@wordpress/e2e-test-utils-playwright` admin/editor fixtures work.
 - **The debug constants in `.wp-env.json` are deliberately declared twice** — once in the top-level `config` and again under `env.tests.config`. wp-env does not carry the top-level block into the *tests* environment; it forces `WP_DEBUG` and `SCRIPT_DEBUG` to false there. Since Playwright runs against the tests env, dropping `env.tests.config` lowers `error_reporting` below `E_WARNING` and every "no PHP errors" assertion in `php-errors.spec.js` silently passes over real warnings. Verify with `wp-env run tests-cli wp config get WP_DEBUG` (must print `1`); the last test in `php-errors.spec.js` guards it from inside the suite.
 
+### The news card
+
+`patterns/news-card.php` (*Nieuwskaart (loop)*, block type `core/post-template`) is the one
+copy of the news card design — featured image, date, title, excerpt in an
+`is-style-soli-card` group. Drop it inside any `core/post-template` with
+`<!-- wp:pattern {"slug":"soli-gutenberg-theme/news-card"} /-->`; it carries no layout of
+its own, so the surrounding post-template or `soli/masonry` decides the columns. Used by
+`templates/home.html`, `templates/archive.html` and `patterns/home-news.php`.
+`templates/search.html` keeps its own variant (no featured image).
+
 ## Gotchas
+
+- Demo images 404ing site-wide usually means `wp-content/uploads` was wiped while the
+  database volume survived, leaving every attachment row dangling. `wp soli seed-demo`
+  heals this — `set_featured()` treats a thumbnail whose file is gone as absent and
+  re-imports it — but it can only fix posts the manifest owns; media uploaded by hand
+  stays broken.
 
 - The blocks manifest keys are relative to `build/blocks`, so registration passes `build/blocks` (not `build`) as the collection path.
 - Pattern PHP escapes everything; block markup in patterns must keep serialized HTML in sync with the block comment attributes.
