@@ -6,6 +6,7 @@
 		"."
 	],
 	"plugins": [],
+	"port": 8902,
 	"config": {
 		"WP_DEBUG": true,
 		"WP_DEVELOPMENT_MODE": "theme",
@@ -15,6 +16,7 @@
 	},
 	"env": {
 		"tests": {
+			"port": 8903,
 			"config": {
 				"WP_DEBUG": true,
 				"WP_DEVELOPMENT_MODE": "theme",
