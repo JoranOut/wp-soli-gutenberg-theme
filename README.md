@@ -1,8 +1,20 @@
+[![version](https://img.shields.io/github/package-json/v/JoranOut/wp-soli-gutenberg-theme?label=version&color=3858e9)](https://github.com/JoranOut/wp-soli-gutenberg-theme/releases)
+[![nightly](https://img.shields.io/github/v/release/JoranOut/wp-soli-gutenberg-theme?include_prereleases&label=nightly&color=fb8817)](https://github.com/JoranOut/wp-soli-gutenberg-theme/releases)
+[![tested up to](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.wordpress.org%2Fcore%2Fversion-check%2F1.7%2F&query=%24.offers%5B0%5D.current&label=tested%20up%20to&prefix=WP%20&color=40a8af)](https://wordpress.org/download/releases/)
+[![requires](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FJoranOut%2Fwp-soli-gutenberg-theme%2Fmain%2Fpackage.json&query=%24.wordpress.requiresAtLeast&label=requires&prefix=WP%20&color=40a8af)](https://wordpress.org/download/releases/)
+[![wp-env](https://img.shields.io/github/package-json/dependency-version/JoranOut/wp-soli-gutenberg-theme/dev/@wordpress/env?label=wp-env&color=40a8af)](https://www.npmjs.com/package/@wordpress/env)
+[![node](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FJoranOut%2Fwp-soli-gutenberg-theme%2Fmain%2Fpackage.json&query=%24.engines.node&label=node&color=43853d)](https://nodejs.org)
+[![license](https://img.shields.io/github/license/JoranOut/wp-soli-gutenberg-theme?color=blue)](LICENSE)
+
 # Soli Gutenberg Theme
 
+<!-- Machine-readable markers. publish.js reads the theme name to name the zip,
+     and the nightly workflow rewrites the version here when packaging a build.
+     Kept in a comment because a single tilde renders as strikethrough on GitHub;
+     the badges above are the human-readable version. Do not reformat.
 ~Plugin Name: wp-soli-gutenberg-theme~
-
-~Current Version:0.1.0~
+~Current Version: 0.1.0~
+-->
 
 Block theme (Full Site Editing) for [soli.nl](https://soli.nl) — Muziekvereniging Soli, Driehuis, sinds 1909.
 
@@ -28,9 +40,9 @@ These are provided by separate Soli plugins; the theme ships placeholder pattern
 ```bash
 npm install
 npm run build          # build custom blocks (required before starting)
-npm run env:start      # wp-env at http://localhost:8888 (admin/password)
+npm run env:start      # wp-env at http://localhost:8902 (admin/password)
 npm run start          # watch mode for block development
-npm run test:e2e       # Playwright e2e tests (uses the tests env at :8889)
+npm run test:e2e       # Playwright e2e tests (uses the tests env at :8903)
 ```
 
 `bin/setup.sh` runs automatically after `wp-env start` and seeds demo pages
@@ -51,4 +63,4 @@ Locales `nl_NL` and `en_US`, files in `/languages`. Build via `npm run i18n:buil
 
 ## Release
 
-Semantic versioning; version synced in `style.css`, `functions.php` (`SOLI_GUTENBERG_THEME__VERSION`), this README (`~Current Version:x.x.x~`) and `package.json`. `npm run publish` builds blocks and creates the distribution zip.
+Semantic versioning; version synced in `style.css`, `functions.php` (`SOLI_GUTENBERG_THEME__VERSION`), the `Current Version` marker at the top of this README, and `package.json`. The nightly workflow rewrites all four in the working tree before packaging, so a nightly zip reports its own version rather than the stable one. The supported WordPress range (`Requires at least` / `Tested up to` in `style.css`, and the updater config in `functions.php`) is stamped by both release workflows from the versions the e2e matrix actually ran. `npm run publish` builds blocks and creates the distribution zip.

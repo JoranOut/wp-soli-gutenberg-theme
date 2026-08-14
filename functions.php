@@ -397,8 +397,13 @@ function soli_gutenberg_theme_github_updater(): void {
 			'raw_url'      => 'https://raw.githubusercontent.com/JoranOut/wp-soli-gutenberg-theme/main',
 			'github_url'   => 'https://github.com/JoranOut/wp-soli-gutenberg-theme',
 			'zip_url'      => 'https://github.com/JoranOut/wp-soli-gutenberg-theme/releases/latest/download/wp-soli-gutenberg-theme.zip',
-			'requires'     => '6.8.0',
-			'tested'       => '6.8.0',
+			// Both ends of the supported range are rewritten at packaging time by
+			// the nightly and release workflows, from the same two numbers the
+			// e2e matrix runs against: 'requires' from package.json's
+			// wordpress.requiresAtLeast, 'tested' from wordpress.org's current
+			// release. Do not reformat - the workflows match on this shape.
+			'requires'     => '6.9',
+			'tested'       => '7.0.4',
 			'requires_php' => '8.2',
 			'readme'       => 'README.md',
 		);
