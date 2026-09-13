@@ -5,12 +5,14 @@
  * Categories: soli
  * Block Types: core/post-content
  * Post Types: post
- * Description: Startinhoud voor een fotoverslag (gebruik het Fotoverslag-sjabloon): inleidende tekst, setlist, fotogalerij en een link naar de orkestpagina.
+ * Description: Startinhoud voor een fotoverslag (gebruik het Fotoverslag-sjabloon): uitgelichte afbeelding, inleidende tekst, setlist, fotocarrousel (soli/image-carousel) en een link naar de orkestpagina.
  *
  * @package Soli_Gutenberg_Theme
  */
 
 ?>
+<!-- wp:post-featured-image {"aspectRatio":"2/1","style":{"border":{"radius":"14px"}},"className":"soli-post-hero-image"} /-->
+
 <!-- wp:group {"className":"soli-post-prose","layout":{"type":"default"}} -->
 <div class="wp-block-group soli-post-prose">
 	<!-- wp:paragraph -->
@@ -25,6 +27,6 @@
 
 <!-- wp:pattern {"slug":"soli-gutenberg-theme/post-setlist"} /-->
 
-<!-- wp:pattern {"slug":"soli-gutenberg-theme/post-photo-gallery"} /-->
+<!-- wp:soli/image-carousel {"align":"wide"} /-->
 
 <!-- wp:pattern {"slug":"soli-gutenberg-theme/post-orchestra-link"} /-->
