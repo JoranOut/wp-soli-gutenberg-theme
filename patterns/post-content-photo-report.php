@@ -11,7 +11,7 @@
  */
 
 ?>
-<!-- wp:post-featured-image {"aspectRatio":"2/1","style":{"border":{"radius":"14px"}},"className":"soli-post-hero-image"} /-->
+<!-- wp:soli/featured-image /-->
 
 <!-- wp:group {"className":"soli-post-prose","layout":{"type":"default"}} -->
 <div class="wp-block-group soli-post-prose">

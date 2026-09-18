@@ -11,7 +11,7 @@
  */
 
 ?>
-<!-- wp:post-featured-image {"aspectRatio":"2/1","style":{"border":{"radius":"14px"}},"className":"soli-post-hero-image"} /-->
+<!-- wp:soli/featured-image /-->
 
 <!-- wp:pattern {"slug":"soli-gutenberg-theme/post-event-ticket"} /-->
 
