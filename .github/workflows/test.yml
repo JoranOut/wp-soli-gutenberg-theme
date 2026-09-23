@@ -91,7 +91,7 @@ jobs:
           # from these same two numbers, so if wp-env quietly installed something
           # else the theme would advertise compatibility it never demonstrated.
           # Note the run container is tests-cli, not tests.
-          RAW=$(npx wp-env run tests-cli wp core version 2>&1 | tr -d '\r')
+          RAW=$(npx @wordpress/env run tests-cli wp core version 2>&1 | tr -d '\r')
           ACTUAL=$(printf '%s\n' "$RAW" | grep -oE '^[0-9]+\.[0-9]+(\.[0-9]+)?$' | head -1 || true)
           WANTED="${{ steps.wp.outputs.version }}"
 
@@ -117,7 +117,7 @@ jobs:
           # bin/setup.sh runs as the afterStart lifecycle script and installs
           # nl_NL; several specs assert Dutch strings. A core swap that skipped
           # the setup would fail those specs for a confusing reason.
-          LANG_OPT=$(npx wp-env run tests-cli wp option get WPLANG 2>&1 | tr -d '\r' | grep -oE '^nl_NL$' | head -1 || true)
+          LANG_OPT=$(npx @wordpress/env run tests-cli wp option get WPLANG 2>&1 | tr -d '\r' | grep -oE '^nl_NL$' | head -1 || true)
           if [ "$LANG_OPT" != "nl_NL" ]; then
             echo "::error::the tests environment is not on nl_NL - bin/setup.sh did not complete."
             exit 1
