@@ -40,7 +40,7 @@
 				<div class="wp-block-columns are-vertically-aligned-center">
 					<!-- wp:column {"verticalAlignment":"center","width":"56%"} -->
 					<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:56%">
-						<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/10"} /-->
+						<!-- wp:post-featured-image {"aspectRatio":"16/10"} /-->
 					</div>
 					<!-- /wp:column -->
 

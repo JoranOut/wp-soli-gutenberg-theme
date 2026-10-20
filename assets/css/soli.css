@@ -113,6 +113,10 @@ footer .wp-block-list li {
 	margin: 0;
 }
 
+.wp-block-soli-menu-link a {
+	font-weight: 300;
+}
+
 /* Page hero title on light sections — maroon, with a short gold rule beneath
    (mockup .og-title / news + vereniging heros). White-on-cover heros keep their
    own color and don't use this class. */
