@@ -55,6 +55,11 @@ Legend: ✅ covered · ⛔ not e2e-suitable
 - `patterns.spec.js` — front page, orkesten, pattern + category registration (pre-existing)
 - `content-blocks.spec.js` — concert-details, flyer-callout, program-list, post-nav (NEW)
 - `masonry.spec.js` — masonry packing, responsive column counts, load-more batching (NEW)
+- `mobile.spec.js` — at 390px: navigation overlay opens/closes with the pages and the
+  "Word lid" link, standalone CTA hidden, hero columns stacked, and no horizontal scroll
+  on any front-end route; plus the desktop counterpart of the header swap at 1280px.
+  Runs twice: in the `chromium` project and in `mobile-safari` (iPhone 17 profile on
+  WebKit, with taps instead of clicks; Escape and the desktop check are skipped there) (NEW)
 - `queries.spec.js` — feature, category archive, search (NEW)
 - `editor.spec.js` — paper canvas, 736px width (both post-scoped), block styles (NEW)
 - `interactions.spec.js` — soli-notes click burst (NEW)
