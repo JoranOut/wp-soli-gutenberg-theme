@@ -16,11 +16,20 @@ body:not(.home) {
 	background-color: var(--wp--preset--color--white);
 }
 
-/* Sticky site header (applied to the header template part wrapper). */
-.soli-header {
+/* Sticky site header. The sticky element is the template part wrapper: the
+   .soli-header group inside it fills it exactly, so it would have no room to
+   stick. */
+.wp-site-blocks > header:has(> .soli-header) {
 	position: sticky;
 	top: 0;
 	z-index: 100;
+}
+
+/* The admin bar scrolls away with the page at every width, as core already
+   does at 600px and under. The header starts below it and then sticks flush
+   to the top of the window instead of sliding under a fixed bar. */
+.admin-bar #wpadminbar {
+	position: absolute;
 }
 
 /* Nudge the logo up so it sits optically level with the wordmark. */
