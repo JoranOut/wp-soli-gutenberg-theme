@@ -32,6 +32,13 @@ module.exports = defineConfig( {
 			name: 'chromium',
 			use: { ...devices[ 'Desktop Chrome' ] },
 		},
+		{
+			// iPhone profile on Playwright's WebKit: Safari's engine, touch,
+			// mobile UA and 3x pixels. Not real iOS Safari, but close.
+			name: 'mobile-safari',
+			testMatch: /mobile\.spec\.js/,
+			use: { ...devices[ 'iPhone 17' ] },
+		},
 	],
 	webServer: {
 		command: 'npm run env:start',

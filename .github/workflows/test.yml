@@ -76,7 +76,7 @@ jobs:
           echo "Leg '${{ matrix.channel }}' targets WordPress ${VERSION}"
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium webkit
 
       - name: Build blocks
         run: npm run build:blocks
