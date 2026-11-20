@@ -81,7 +81,7 @@ test.describe( 'Soli patterns', () => {
 
 	test( 'every video embed gets the framed screen', async ( { page } ) => {
 		// Harmonie uses a plain core/embed with no theme class, so the frame
-		// must come from the global video-embed styling.
+		// must come from the global video styling.
 		await page.goto( '/orkesten-en-groepen/harmonie-orkest/' );
 		const wrapper = page.locator(
 			'.wp-block-embed.is-type-video .wp-block-embed__wrapper'
