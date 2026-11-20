@@ -65,7 +65,7 @@ final class Site_Initializer {
 				$group['title'],
 				Content_Manifest::pattern( 'page-group-' . $group['slug'] ),
 				$orkesten,
-				'page-group'
+				$group['template'] ?? 'page-group'
 			);
 
 			$group_ids[ $group['slug'] ] = $result['id'];
