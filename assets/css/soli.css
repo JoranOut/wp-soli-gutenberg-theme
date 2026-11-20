@@ -1660,14 +1660,17 @@ a.soli-more-button:hover::after {
 	color: rgba(250, 246, 238, 0.78);
 }
 
-.soli-video-player .wp-block-embed__wrapper {
+/* Video embeds (YouTube, Vimeo) anywhere on the site: a framed screen with
+   the card corners and a sans caption. On white the frame sits on a soft card
+   shadow; on the ink video stage it gets a deep shadow and a cream caption. */
+.wp-block-embed.is-type-video .wp-block-embed__wrapper {
 	overflow: hidden;
 	border-radius: var(--wp--custom--card-radius);
 	background: #0e0e1a;
-	box-shadow: 0 30px 70px rgba(26, 26, 46, 0.55), 0 0 0 1px rgba(250, 246, 238, 0.08);
+	box-shadow: 0 18px 40px rgba(26, 26, 46, 0.16), 0 0 0 1px var(--wp--preset--color--line);
 }
 
-.soli-video-player .wp-element-caption {
+.wp-block-embed.is-type-video .wp-element-caption {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -1677,16 +1680,34 @@ a.soli-more-button:hover::after {
 	font-size: 13px;
 	letter-spacing: 0.04em;
 	text-align: left;
-	color: rgba(250, 246, 238, 0.65);
+	color: var(--wp--preset--color--muted);
 }
 
-.soli-video-player .wp-element-caption a {
-	color: var(--wp--preset--color--gold);
+.wp-block-embed.is-type-video .wp-element-caption a {
+	color: var(--wp--preset--color--maroon);
 	text-decoration: none;
 }
 
-.soli-video-player .wp-element-caption a:hover {
+.wp-block-embed.is-type-video .wp-element-caption a:hover {
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.soli-video-stage .wp-block-embed.is-type-video .wp-block-embed__wrapper {
+	box-shadow: 0 30px 70px rgba(26, 26, 46, 0.55), 0 0 0 1px rgba(250, 246, 238, 0.08);
+}
+
+.soli-video-stage .wp-block-embed.is-type-video .wp-element-caption {
+	color: rgba(250, 246, 238, 0.65);
+}
+
+.soli-video-stage .wp-block-embed.is-type-video .wp-element-caption a {
+	color: var(--wp--preset--color--gold);
+}
+
+.soli-video-stage .wp-block-embed.is-type-video .wp-element-caption a:hover {
 	color: #fff;
+	text-decoration: none;
 }
 
 .soli-video-ticket {

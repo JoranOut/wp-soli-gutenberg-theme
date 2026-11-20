@@ -79,6 +79,20 @@ test.describe( 'Soli patterns', () => {
 		}
 	} );
 
+	test( 'every video embed gets the framed screen', async ( { page } ) => {
+		// Harmonie uses a plain core/embed with no theme class, so the frame
+		// must come from the global video-embed styling.
+		await page.goto( '/orkesten-en-groepen/harmonie-orkest/' );
+		const wrapper = page.locator(
+			'.wp-block-embed.is-type-video .wp-block-embed__wrapper'
+		);
+		await expect( wrapper ).toHaveCSS( 'border-top-left-radius', '10px' );
+		await expect( wrapper ).toHaveCSS( 'overflow', 'hidden' );
+		await expect(
+			page.locator( '.wp-block-embed.is-type-video .wp-element-caption' )
+		).toHaveCSS( 'text-align', 'left' );
+	} );
+
 	test( 'lid-worden section offers a concrete action', async ( { page } ) => {
 		await page.goto( '/vereniging/' );
 		const section = page.locator( '#lid-worden' );

@@ -45,8 +45,8 @@ $soli_bb_cta = array(
 	</div>
 	<!-- /wp:columns -->
 
-	<!-- wp:embed {"url":"https://www.youtube.com/watch?v=BNz8ttRs9Gw","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio soli-video-player"} -->
-	<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio soli-video-player"><div class="wp-block-embed__wrapper">
+	<!-- wp:embed {"url":"https://www.youtube.com/watch?v=BNz8ttRs9Gw","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+	<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
 https://www.youtube.com/watch?v=BNz8ttRs9Gw
 </div><figcaption class="wp-element-caption"><?php esc_html_e( 'Deep Purple medley, 26 januari 2013.', 'soli-gutenberg-theme' ); ?> <a href="https://www.youtube.com/@muziekverenigingsoli4755"><?php esc_html_e( "Meer video's op YouTube →", 'soli-gutenberg-theme' ); ?></a></figcaption></figure>
 	<!-- /wp:embed -->
