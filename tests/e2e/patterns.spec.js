@@ -55,6 +55,44 @@ test.describe( 'Soli patterns', () => {
 		).toBeVisible();
 	} );
 
+	test( 'bigband page leads with the video stage', async ( { page } ) => {
+		await page.goto( '/orkesten-en-groepen/bigband/' );
+
+		const stage = page.locator( '.soli-video-stage' );
+		await expect( stage.locator( 'h1', { hasText: 'Bigband' } ) ).toBeVisible();
+		await expect(
+			stage.locator( '.wp-block-embed-youtube' )
+		).toBeVisible();
+
+		// The canvas template renders no title of its own, so a second h1
+		// means the page fell back to the Groepspagina hero.
+		await expect( page.locator( 'h1' ) ).toHaveCount( 1 );
+
+		await expect( page.locator( '.soli-video-ticket .soli-fact' ) ).toHaveCount( 4 );
+		await expect( page.locator( '.soli-setlist li' ) ).toHaveCount( 5 );
+
+		// Both promo buttons point at anchors that exist on the page.
+		const promo = page.locator( '.soli-promo-band' );
+		for ( const href of [ '#bigband-meespelen', '#bigband-video' ] ) {
+			await expect( promo.locator( `a[href="${ href }"]` ) ).toBeVisible();
+			await expect( page.locator( href ) ).toHaveCount( 1 );
+		}
+	} );
+
+	test( 'every video embed gets the framed screen', async ( { page } ) => {
+		// Harmonie uses a plain core/embed with no theme class, so the frame
+		// must come from the global video styling.
+		await page.goto( '/orkesten-en-groepen/harmonie-orkest/' );
+		const wrapper = page.locator(
+			'.wp-block-embed.is-type-video .wp-block-embed__wrapper'
+		);
+		await expect( wrapper ).toHaveCSS( 'border-top-left-radius', '10px' );
+		await expect( wrapper ).toHaveCSS( 'overflow', 'hidden' );
+		await expect(
+			page.locator( '.wp-block-embed.is-type-video .wp-element-caption' )
+		).toHaveCSS( 'text-align', 'left' );
+	} );
+
 	test( 'lid-worden section offers a concrete action', async ( { page } ) => {
 		await page.goto( '/vereniging/' );
 		const section = page.locator( '#lid-worden' );
