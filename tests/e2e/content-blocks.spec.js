@@ -137,4 +137,31 @@ test.describe( 'Soli content blocks', () => {
 		await expect( next ).toContainText( `${ label } Nieuwer` );
 		await expect( next ).toContainText( 'Nieuwer bericht' );
 	} );
+
+	test( 'uploaded videos and other providers get the framed screen', async ( {
+		page,
+		content,
+	} ) => {
+		const markup =
+			'<!-- wp:video -->' +
+			'<figure class="wp-block-video"><video controls src="/wp-content/uploads/soli-e2e.mp4"></video>' +
+			'<figcaption class="wp-element-caption">Upload</figcaption></figure>' +
+			'<!-- /wp:video -->' +
+			'<!-- wp:embed {"url":"https://vimeo.com/76979871","type":"video","providerNameSlug":"vimeo","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->' +
+			'<figure class="wp-block-embed is-type-video is-provider-vimeo wp-block-embed-vimeo wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">\nhttps://vimeo.com/76979871\n</div></figure>' +
+			'<!-- /wp:embed -->';
+		const path = await publishPage( content, 'Video frame E2E', markup );
+		await page.goto( path );
+
+		for ( const frame of [
+			page.locator( '.wp-block-video video' ),
+			page.locator( '.wp-block-embed-vimeo .wp-block-embed__wrapper' ),
+		] ) {
+			await expect( frame ).toHaveCSS( 'border-top-left-radius', '10px' );
+			await expect( frame ).toHaveCSS( 'overflow', 'hidden' );
+		}
+		await expect(
+			page.locator( '.wp-block-video .wp-element-caption' )
+		).toHaveCSS( 'text-align', 'left' );
+	} );
 } );

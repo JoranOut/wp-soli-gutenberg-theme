@@ -223,6 +223,8 @@ final class Content_Manifest {
 	 * Each group has its own content-filled pattern (page-group-{slug}); the
 	 * rehearsal chip matches the times printed on the group page itself. The
 	 * image is a demo photo and is only applied by the demo seeding step.
+	 * A group whose pattern carries its own hero sets 'template' to page-canvas;
+	 * the rest use the Groepspagina template.
 	 *
 	 * @return array<int, array<string, string>> Group definitions.
 	 */
@@ -245,6 +247,7 @@ final class Content_Manifest {
 				'title'     => 'Bigband',
 				'rehearsal' => 'wo (even weken) · 20:00',
 				'image'     => 'bigband.jpg',
+				'template'  => 'page-canvas',
 			),
 			array(
 				'slug'      => 'slagwerkgroep',

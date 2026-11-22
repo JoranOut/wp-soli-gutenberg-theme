@@ -1617,3 +1617,246 @@ a.soli-more-button:hover::after {
 .wp-block-table td {
 	font-variant-numeric: tabular-nums;
 }
+
+/* ---------------------------------------------------------------------------
+   Video stage group page (Bigband): the recording is the hero. An ink stage
+   under a maroon spotlight, the embed at full content width, and the ticket
+   strip pulled up over the stage's bottom edge. */
+.soli-video-stage {
+	background:
+		radial-gradient(ellipse 70% 55% at 30% 0%, rgba(122, 31, 43, 0.55), transparent 70%),
+		radial-gradient(ellipse 50% 40% at 100% 100%, rgba(201, 162, 74, 0.1), transparent 70%),
+		var(--wp--preset--color--ink) !important;
+	padding-top: var(--wp--preset--spacing--60);
+	padding-bottom: 7.5rem;
+}
+
+.soli-video-stage-head {
+	margin-bottom: var(--wp--preset--spacing--50);
+}
+
+.soli-video-title {
+	margin: 0;
+	font-size: clamp(56px, 7vw, 100px);
+	line-height: 0.95;
+	letter-spacing: -0.025em;
+	color: #fff;
+}
+
+.soli-video-title em {
+	margin-left: 0.2em;
+	font-size: 0.32em;
+	font-weight: 400;
+	letter-spacing: 0;
+	vertical-align: 0.15em;
+	color: var(--wp--preset--color--gold);
+}
+
+.soli-video-lede {
+	margin: 0;
+	max-width: 40ch;
+	font-size: 18px;
+	line-height: 1.6;
+	color: rgba(250, 246, 238, 0.78);
+}
+
+/* Every video on the site: embeds WordPress marks as video (YouTube, Vimeo,
+   VideoPress, TikTok, ...) and the core Video block for uploaded files. One
+   framed screen with the card corners and a sans caption. On white the frame
+   sits on a soft card shadow; on the ink video stage it gets a deep shadow
+   and a cream caption. */
+.wp-block-embed.is-type-video .wp-block-embed__wrapper,
+.wp-block-video video {
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	border-radius: var(--wp--custom--card-radius);
+	background: #0e0e1a;
+	box-shadow: 0 18px 40px rgba(26, 26, 46, 0.16), 0 0 0 1px var(--wp--preset--color--line);
+}
+
+.wp-block-embed.is-type-video .wp-element-caption,
+.wp-block-video .wp-element-caption {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 0.5rem 1.5rem;
+	margin-top: 1rem;
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 13px;
+	letter-spacing: 0.04em;
+	text-align: left;
+	color: var(--wp--preset--color--muted);
+}
+
+.wp-block-embed.is-type-video .wp-element-caption a,
+.wp-block-video .wp-element-caption a {
+	color: var(--wp--preset--color--maroon);
+	text-decoration: none;
+}
+
+.wp-block-embed.is-type-video .wp-element-caption a:hover,
+.wp-block-video .wp-element-caption a:hover {
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.soli-video-stage .wp-block-embed.is-type-video .wp-block-embed__wrapper,
+.soli-video-stage .wp-block-video video {
+	box-shadow: 0 30px 70px rgba(26, 26, 46, 0.55), 0 0 0 1px rgba(250, 246, 238, 0.08);
+}
+
+.soli-video-stage .wp-block-embed.is-type-video .wp-element-caption,
+.soli-video-stage .wp-block-video .wp-element-caption {
+	color: rgba(250, 246, 238, 0.65);
+}
+
+.soli-video-stage .wp-block-embed.is-type-video .wp-element-caption a,
+.soli-video-stage .wp-block-video .wp-element-caption a {
+	color: var(--wp--preset--color--gold);
+}
+
+.soli-video-stage .wp-block-embed.is-type-video .wp-element-caption a:hover,
+.soli-video-stage .wp-block-video .wp-element-caption a:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+.soli-video-ticket {
+	position: relative;
+	z-index: 1;
+	max-width: none;
+	margin-block-start: -4.5rem !important;
+}
+
+/* Small pills for venues and the like, from a plain core list. */
+.soli-tag-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-top: 0.75rem;
+	padding: 0;
+	list-style: none;
+}
+
+.soli-tag-list li {
+	padding: 0.35rem 0.85rem;
+	border-radius: 999px;
+	background: var(--wp--preset--color--paper);
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--wp--preset--color--maroon);
+}
+
+/* Setlist panel: an ordered list printed like a concert programme. */
+.soli-setlist {
+	background: var(--wp--preset--color--cream);
+}
+
+.soli-setlist ol.wp-block-list {
+	margin: 0;
+	padding-left: 1.5rem;
+	list-style: none;
+	counter-reset: soli-setlist;
+}
+
+.soli-setlist ol.wp-block-list li {
+	counter-increment: soli-setlist;
+	display: grid;
+	grid-template-columns: 1.75rem 1fr;
+	align-items: baseline;
+	padding: 0.8rem 0;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 1.25;
+}
+
+.soli-setlist ol.wp-block-list li + li {
+	border-top: 1px dashed var(--wp--preset--color--sand);
+}
+
+.soli-setlist ol.wp-block-list li::before {
+	content: counter(soli-setlist);
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 12px;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	color: var(--wp--preset--color--muted);
+}
+
+/* Recruitment band: club photo with a left-weighted ink fade and a big
+   two-line pitch. */
+.soli-promo-band::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background:
+		linear-gradient(90deg, rgba(26, 26, 46, 0.88) 0%, rgba(26, 26, 46, 0.55) 45%, rgba(26, 26, 46, 0) 75%),
+		linear-gradient(180deg, transparent 50%, rgba(26, 26, 46, 0.6) 100%);
+	pointer-events: none;
+}
+
+.soli-promo-band .wp-block-cover__image-background {
+	object-position: center 35%;
+}
+
+.soli-promo-band .wp-block-cover__inner-container {
+	z-index: 1;
+}
+
+.soli-promo-title {
+	max-width: 14ch;
+	margin-top: 0.75rem;
+	font-size: clamp(40px, 5.6vw, 76px);
+	line-height: 0.98;
+	letter-spacing: -0.02em;
+	font-variant-numeric: lining-nums;
+	text-wrap: balance;
+	color: #fff;
+}
+
+.soli-promo-title em {
+	display: block;
+	font-weight: 400;
+	color: var(--wp--preset--color--gold);
+}
+
+.soli-promo-sub {
+	max-width: 40ch;
+	font-size: 18px;
+	line-height: 1.55;
+	color: rgba(250, 246, 238, 0.85);
+}
+
+.soli-promo-band .wp-block-buttons {
+	margin-top: 1.6rem;
+}
+
+/* Ghost button for dark surfaces. */
+.soli-button-ghost .wp-block-button__link {
+	background: transparent;
+	color: var(--wp--preset--color--cream);
+	box-shadow: inset 0 0 0 1px rgba(250, 246, 238, 0.45);
+}
+
+.soli-button-ghost .wp-block-button__link:hover {
+	background: var(--wp--preset--color--cream);
+	color: var(--wp--preset--color--ink);
+}
+
+@container soli (max-width: 781px) {
+	.soli-video-stage {
+		padding-top: var(--wp--preset--spacing--50);
+	}
+
+	.soli-promo-band::after {
+		background: linear-gradient(180deg, rgba(26, 26, 46, 0.2) 0%, rgba(26, 26, 46, 0.88) 45%, rgba(26, 26, 46, 0.95) 100%);
+	}
+
+	.soli-promo-band .wp-block-cover__inner-container {
+		padding-top: 9rem;
+	}
+}
